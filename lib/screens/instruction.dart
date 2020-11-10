@@ -1,6 +1,8 @@
 import 'package:fake_reviews/gesture_logger.dart';
+import 'package:fake_reviews/models/log_recipient.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'description.dart';
 
@@ -24,38 +26,54 @@ class Instruction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureLogger(
-      child: Scaffold(
-        body: Container(
-          margin: MediaQuery.of(context).padding,
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-              child: Text(
-            messages[index],
-          )),
-        ),
-        bottomNavigationBar: Container(
-          width: double.infinity,
-          child: RaisedButton(
-            child: new Text(
-              "Avanti",
+    WidgetsBinding.instance.addPostFrameCallback((_) => context
+        .read<LogRecipient>()
+        .addRenderedEvent(
+            ViewRenderedEvent(item: index.toString(), view: '$runtimeType')));
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: GestureLogger(
+        child: Scaffold(
+          body: Container(
+            margin: MediaQuery.of(context).padding,
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+                child: Text(
+              messages[index],
+            )),
+          ),
+          bottomNavigationBar: Container(
+            width: double.infinity,
+            child: RaisedButton(
+              child: new Text(
+                "Avanti",
+              ),
+              onPressed: this.index == (messages.length - 1)
+                  ? null
+                  : () {
+                      var builder;
+
+                      if (this.index < (messages.length - 2)) {
+                        builder =
+                            (context) => Instruction(index: this.index + 1);
+                      } else if (this.index == (messages.length - 2)) {
+                        builder = (context) => Description(item: 'prova1');
+                        final mediaQuery = MediaQuery.of(context);
+                        context
+                            .read<LogRecipient>()
+                            .sendScreenDetails(ScreenDetails(
+                              width: mediaQuery.size.width,
+                              height: mediaQuery.size.height,
+                              details: mediaQuery.toString(),
+                            ));
+                      }
+
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: builder),
+                      );
+                    },
             ),
-            onPressed: this.index == (messages.length - 1)
-                ? null
-                : () {
-                    var builder;
-
-                    if (this.index < (messages.length - 1)) {
-                      builder = (context) => Instruction(index: this.index + 1);
-                    } else if (this.index == (messages.length - 1)) {
-                      builder = (context) => Description(item: 'prova1');
-                    }
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: builder),
-                    );
-                  },
           ),
         ),
       ),

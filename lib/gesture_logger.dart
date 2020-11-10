@@ -1,5 +1,7 @@
+import 'package:fake_reviews/models/log_recipient.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:provider/provider.dart';
 
 class GestureLogger extends StatelessWidget {
   const GestureLogger({
@@ -11,59 +13,20 @@ class GestureLogger extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RawGestureDetector(
-        gestures: {
-          AllowMultipleTapHandler:
-              GestureRecognizerFactoryWithHandlers<AllowMultipleTapHandler>(
-            () => AllowMultipleTapHandler(),
-            (AllowMultipleTapHandler instance) {
-              // instance
-              //   ..onTapDown = (TapDownDetails details) {
-              //     print(details);
-              //   };
-              // TODO: convert to pressure?? Pan 
-            },
-          )
-        },
-        behavior: HitTestBehavior.opaque,
-        //Parent Container
-        child: RawGestureDetector(
-            gestures: {
-              AllowMultiplePanHandler:
-              GestureRecognizerFactoryWithHandlers<AllowMultiplePanHandler>(
-                    () => AllowMultiplePanHandler(),
-                    (AllowMultiplePanHandler instance) {
-                  instance
-                    ..onStart = (DragStartDetails details) {
-                      //print(details);
-                    }
-                    ..onUpdate = (DragUpdateDetails details) {
-                      //print(details);
-                    }
-                    ..onEnd = (DragEndDetails details) {
-                      //print(details);
-                    };
-                },
-              )
-            },
-            behavior: HitTestBehavior.opaque,
-            //Parent Container
-            child: child
-        )
+    return Listener(
+      child: child,
+      onPointerDown: (PointerDownEvent event) {
+        context.read<LogRecipient>().addPointerEvent(event);
+      },
+      onPointerUp: (PointerUpEvent event) {
+        context.read<LogRecipient>().addPointerEvent(event);
+      },
+      onPointerMove: (PointerMoveEvent event) {
+        context.read<LogRecipient>().addPointerEvent(event);
+      },
+      onPointerCancel: (PointerCancelEvent event) {
+        context.read<LogRecipient>().addPointerEvent(event);
+      },
     );
-  }
-}
-
-class AllowMultipleTapHandler extends TapGestureRecognizer {
-  @override
-  void rejectGesture(int pointer) {
-    //acceptGesture(pointer);
-  }
-}
-
-class AllowMultiplePanHandler extends PanGestureRecognizer {
-  @override
-  void rejectGesture(int pointer) {
-    //acceptGesture(pointer);
   }
 }
