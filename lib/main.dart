@@ -1,9 +1,11 @@
-import 'package:fake_reviews/models/items_provider.dart';
-import 'package:fake_reviews/models/log_recipient.dart';
-import 'package:fake_reviews/screens/instruction.dart';
+import 'package:fake_reviews/providers/items_provider.dart';
+import 'package:fake_reviews/providers/log_provider.dart';
+import 'package:fake_reviews/screens/welcome_screen.dart';
+import 'package:fake_reviews/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
 
 void main() {
   //debugPrintGestureArenaDiagnostics = true;
@@ -21,18 +23,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          // In this sample app, CatalogModel never changes, so a simple Provider
-          // is sufficient.
           Provider(create: (context) => ItemsProvider()),
-          Provider(create: (context) => LogRecipient()),
+          Provider(create: (context) => LogProvider()),
         ],
         child: MaterialApp(
           title: 'Fake Review',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          home: Instruction(index: 0),
+          theme: AppTheme().lightTheme,
+          home: WelcomeScreen(),
         ));
   }
 }
