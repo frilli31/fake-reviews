@@ -2,22 +2,21 @@ import 'package:flutter/cupertino.dart';
 
 class ItemsProvider {
   static List<Item> _itemsBag = [
-    Item(
-        name: '1.jpg',
-        type: ItemType.product,
-        description:
-            ['Decidi di comperare un supporto per il tuo telefono su un sito di elettronica. Il prodotto risulta decisamente leggero e instabile, i gommini dove appoggia il cellulare sono incollati male e si staccano.', 'Contrariato, comunichi al negozio la deludente esperienza. Quest\'ultimo ti promette allora, 3 articoli della categoria di accessori per la telefonia in cambio di una recensione positiva.']),
-    Item(
-        name: '2.jpg',
-        type: ItemType.service,
-        description:
-            ['Riscontri un\'incongruenza rispetto al servizio previsto dalla promozione attiva sulla tua carta sim, decidi, quindi di chiamare l\'assistenza telefonica per chiedere spiegazioni. L\'operatore in linea è molto scortese, no da ascolto alle tue richieste e ti tratta con estrema saccenza.','Amareggiato dell\' accaduto, gli comunichi che lascerai una recensione negatica al servizio. Questi, allora, chiedendoti scusa ti promette, in cambio di una valutazione positiva, un\'offerta speciale di 30 GB di internet della durata di 3 mesi.']
-    ),
+    Item(name: '1.jpg', type: ItemType.product, description: [
+      'Decidi di comperare un supporto per il tuo telefono su un sito di elettronica. Il prodotto risulta decisamente leggero e instabile, i gommini dove appoggia il cellulare sono incollati male e si staccano.',
+      'Contrariato, comunichi al negozio la deludente esperienza. Quest\'ultimo ti promette allora, 3 articoli della categoria di accessori per la telefonia in cambio di una recensione positiva.'
+    ]),
+    Item(name: '2.jpg', type: ItemType.service, description: [
+      'Riscontri un\'incongruenza rispetto al servizio previsto dalla promozione attiva sulla tua carta sim, decidi, quindi di chiamare l\'assistenza telefonica per chiedere spiegazioni. L\'operatore in linea è molto scortese, no da ascolto alle tue richieste e ti tratta con estrema saccenza.',
+      'Amareggiato dell\' accaduto, gli comunichi che lascerai una recensione negativa al servizio. Questi, allora, chiedendoti scusa ti promette, in cambio di una valutazione positiva, un\'offerta speciale di 30 GB di internet della durata di 3 mesi.'
+    ]),
     Item(
       name: '3.jpg',
       type: ItemType.service,
-      description:
-          ['Hai soggiornato, per una breve vacanza a Praga, in un hotel prenotato tramite il sito Trivago. Hai vissuto un incubo. La camera era scadente, sporca e per niente curataò e hai trovato un bacherozzolo nella vasca da bagno. Il personale si è rivelato essere scortese e il servizio della colazione in camera non è stato rispettato.','Tuttavia Trivago ti promette una disceta percentuale di guadagno di cambio di una recensione positiva all\'hotel.'],
+      description: [
+        'Hai soggiornato, per una breve vacanza a Praga, in un hotel prenotato tramite il sito Trivago. Hai vissuto un incubo. La camera era scadente, sporca e per niente curata e hai trovato un bacherozzolo nella vasca da bagno. Il personale si è rivelato essere scortese e il servizio della colazione in camera non è stato rispettato.',
+        'Tuttavia Trivago ti promette una disceta percentuale di guadagno di cambio di una recensione positiva all\'hotel.'
+      ],
     ),
     Item(
       name: '4.png',
@@ -46,7 +45,10 @@ class ItemsProvider {
       name: '8.png',
       type: ItemType.service,
       description:
-          ['Sei andato a cena in un ristorante che ha da poco aperto nella stessa via in cui si trova la pizzeria di un tuo carissimo amico. Ha esaudito le tue aspettative. Ottima qualità e ingradienti freschi, con molta varietà di scelta e abbondanza dei piatti serviti.','Il tuo amico, però ti chiede di lasciarne una recensione negativa. Per ringraziarti del gesto, ti promette un trattamento di favore per tutte le volte che andrai a mangiare da lui.'],
+      [
+        'Sei andato a cena in un ristorante che ha da poco aperto nella stessa via in cui si trova la pizzeria di un tuo carissimo amico. Ha esaudito le tue aspettative. Ottima qualità e ingredienti freschi, con molta varietà di scelta e abbondanza dei piatti serviti.',
+        'Il tuo amico, però ti chiede di lasciarne una recensione negativa. Per ringraziarti del gesto, ti promette un trattamento di favore per tutte le volte che andrai a mangiare da lui.'
+      ],
     ),
     Item(
         name: '9.jpg',
@@ -116,19 +118,28 @@ class ItemsProvider {
       name: '20.png',
       type: ItemType.product,
       description:
-          ['Esegui un ordine on-line di un braccialetto. Alla consegna ti rendi contro che l\'articolo è bello a vedersi, ma qualitativamente scadente.','Dopo due giorni dal suo utilizzo si sono staccate delle pietre e il gancio di bloccaggio è difettoso, si apre con estrema facilà. Lascia una recensione.'],
+      [
+        'Esegui un ordine on-line di un braccialetto. Alla consegna ti rendi conto che l\'articolo è bello a vedersi, ma qualitativamente scadente.',
+        'Dopo due giorni dal suo utilizzo si sono staccate delle pietre e il gancio di bloccaggio è difettoso, si apre con estrema facilà. Lascia una recensione.'
+      ],
     ),
     Item(
       name: '21.webp',
       type: ItemType.product,
       description:
-          ['Hai bisogno di appendere alcune mensole nella tua nuova casa, ma non hai tempo per andare dal ferramenta ad acquistare un trapano. Decidi di acquistare un trapano on-line, da un sito internet che vanta utensili di buon qualità a prezzi ridotti.','Il trapano ti viene consegnato a casa dopo appena 16 giorni. La plastica da cui è ricoperto pare quella di un giocattolo. Le punte non sono buone, tanto che rovini il muro di casa lasciando dei buchi grossi e mal fatti'],
+      [
+        'Hai bisogno di appendere alcune mensole nella tua nuova casa, ma non hai tempo per andare dal ferramenta ad acquistare un trapano. Decidi di acquistare un trapano on-line, da un sito internet che vanta utensili di buon qualità a prezzi ridotti.',
+        'Il trapano ti viene consegnato a casa con molto ritardo. La plastica da cui è ricoperto pare quella di un giocattolo. Le punte non sono buone, tanto che rovini il muro di casa lasciando dei buchi grossi e mal fatti'
+      ],
     ),
     Item(
       name: '22.png',
       type: ItemType.product,
       description:
-          ['Durante la primavera unà associazione che sostiene pazienti affetti da malattie rare è presente nelle piazze italiane prer vendere delle ortensie, il cui ricavato verrà devoluto ai pazienti che non possono permettersi delle cure adeguate. Hai deciso di acquistarne una per il tuo giardino, nonostante il prezzo di gran lunga superiore rispetto al normale.','Al momento dell\'acquisto l\'ortensia era piuttosto sfiorita e appassita, l\'hai piantata in giardino ma è morta pochi giorni dopo. La tua amica Sara, che lavora come volontaria presso l\'associazione, ti chiede di lasciare una recensione positiva sul sito dell\'associazione per aiutarli a incrementare le vendite che non stanno andando molto bene.'],
+      [
+        'Durante la primavera un\'associazione che sostiene pazienti affetti da malattie rare è presente nelle piazze italiane per vendere delle ortensie, il cui ricavato verrà devoluto ai pazienti che non possono permettersi delle cure adeguate. Hai deciso di acquistarne una per il tuo giardino, nonostante il prezzo di gran lunga superiore rispetto al normale.',
+        'Al momento dell\'acquisto l\'ortensia era piuttosto sfiorita e appassita, l\'hai piantata in giardino ma è morta pochi giorni dopo. La tua amica Sara, che lavora come volontaria presso l\'associazione, ti chiede di lasciare una recensione positiva sul sito dell\'associazione per aiutarli a incrementare le vendite che non stanno andando molto bene.'
+      ],
     ),
   ];
 
