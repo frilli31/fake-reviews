@@ -17,6 +17,7 @@ class StartExperiment extends StatelessWidget {
           body: Column(children: [
             Container(
               padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+              width: double.infinity,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,

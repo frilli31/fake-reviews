@@ -5,9 +5,9 @@ import 'dart:io';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 import 'package:uuid/uuid_util.dart';
-import 'package:http/http.dart' as http;
 
 final bool DEBUG = false;
 
@@ -133,7 +133,7 @@ class LogProvider {
   Future<void> addReview(ReviewEvent event) async {
 
     final responsePath = http.put(
-      '$serverAddress/path-star/${event.item.split('.').first}/$_uuid.json',
+      '$serverAddress/pathStar/${event.item.split('.').first}/$_uuid.json',
       headers: <String, String>{
         'Content-Type': 'application/json',
       },

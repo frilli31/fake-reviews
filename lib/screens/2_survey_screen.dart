@@ -3,11 +3,9 @@ import 'package:fake_reviews/providers/log_provider.dart';
 import 'package:fake_reviews/screens/3_instruction_screen.dart';
 import 'package:fake_reviews/utils/questions.dart';
 import 'package:flutter/material.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:provider/provider.dart';
 import 'package:numberpicker/numberpicker.dart';
-
-import '4_test_description_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SurveyScreen extends StatefulWidget {
   SurveyScreen({Key key}) : super(key: key);
@@ -92,14 +90,21 @@ class _SurveyScreenState extends State<SurveyScreen> {
           final Question item = questions[indexOfQuestion];
 
           var answersWidget;
-          if(item.numericQuestion) {
-            answersWidget =[NumberPicker.integer(
+          if (item.text == 'Se si, più frequentemente, in quale situazione?'
+              && _answers[indexOfQuestion - 1].isNotEmpty
+              && _answers[indexOfQuestion - 1][0] == 'Mai') {
+            _answers[indexOfQuestion] = ['Mai'];
+            return Container();
+          }
+          else if (item.numericQuestion) {
+            answersWidget = [NumberPicker.integer(
                 initialValue: int.tryParse(_answers[indexOfQuestion][0]),
                 minValue: 1,
                 maxValue: 100,
                 onChanged: (number) {
                   overwriteAnswer(indexOfQuestion, number.toString());
-                })];
+                })
+            ];
           }
           else if (item.allowMultipleAnswers == false) {
             answersWidget = item.possibleAnswers.map((answer) {
