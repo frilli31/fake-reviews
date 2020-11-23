@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 import 'package:uuid/uuid_util.dart';
 import 'package:http/http.dart' as http;
 
-final bool DEBUG = true;
+final bool DEBUG = false;
 
 final uuid = Uuid();
 
@@ -133,7 +133,7 @@ class LogProvider {
   Future<void> addReview(ReviewEvent event) async {
 
     final responsePath = http.put(
-      '$serverAddress/path/${event.item.split('.').first}/$_uuid.json',
+      '$serverAddress/path-star/${event.item.split('.').first}/$_uuid.json',
       headers: <String, String>{
         'Content-Type': 'application/json',
       },

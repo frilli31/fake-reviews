@@ -1,7 +1,5 @@
 import 'package:fake_reviews/components/bottom_button.dart';
-import 'package:fake_reviews/providers/items_provider.dart';
 import 'package:fake_reviews/providers/log_provider.dart';
-import 'package:fake_reviews/screens/6_start_experiment.dart';
 import 'package:fake_reviews/screens/3_instruction_screen.dart';
 import 'package:fake_reviews/utils/questions.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +18,7 @@ class SurveyScreen extends StatefulWidget {
 
 class _SurveyScreenState extends State<SurveyScreen> {
   int numberOfQuestions = questions.length;
-  List<List<String>> _answers = List.generate(questions.length, (i) => List.empty(growable: true));
+  List<List<String>> _answers = List.generate(questions.length, (i) => i == 1 ? ['23'] : List.empty(growable: true));
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
 
@@ -95,7 +93,6 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
           var answersWidget;
           if(item.numericQuestion) {
-            _answers[indexOfQuestion].add('23');
             answersWidget =[NumberPicker.integer(
                 initialValue: int.tryParse(_answers[indexOfQuestion][0]),
                 minValue: 1,
@@ -120,7 +117,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
                   if(indexOfQuestion != questions.length -1)
                     Future.delayed(const Duration(milliseconds: 200)).then((value) =>
                       itemScrollController.scrollTo(
-                          index: index + 1, duration: Duration(milliseconds: 200)));
+                          index: index + 1, duration: Duration(milliseconds: 300)));
                 },
               );
             });
