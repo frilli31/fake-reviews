@@ -36,11 +36,12 @@ class DescriptionScreen extends StatelessWidget {
         child: Scaffold(
           body: Column(children: [
             Expanded(
-              child: Card(
-                margin: EdgeInsets.all(10),
-                child: Image.asset(
-                  'images/${item.name}',
-                  fit: BoxFit.contain,
+              child: Center(
+                child: Card(
+                  child: Image.asset(
+                    'images/${item.name}',
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),

@@ -5,13 +5,9 @@ import 'package:fake_reviews/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/rendering.dart';
 
 
 void main() {
-  //debugPrintGestureArenaDiagnostics = true;
-  //debugPaintSizeEnabled = true;
-
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
