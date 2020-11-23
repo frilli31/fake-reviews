@@ -1,5 +1,6 @@
+import 'package:fake_reviews/components/bottom_button.dart';
 import 'package:fake_reviews/providers/items_provider.dart';
-import 'package:fake_reviews/screens/rating_screen.dart';
+import 'package:fake_reviews/screens/8_rating_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -47,25 +48,20 @@ class DescriptionScreen extends StatelessWidget {
               width: double.infinity,
               padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
               child: Column(
-                  children: phrases,
+                children: phrases,
                 crossAxisAlignment: CrossAxisAlignment.start,
               ),
             )
           ]),
-          bottomNavigationBar: Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: TextButton(
-              child: new Text(
-                "Avanti",
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                      builder: (context) => RatingScreen(item: this.item)),
-                );
-              },
-            ),
+          bottomNavigationBar: BottomButton(
+            text: "Avanti",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => RatingScreen(item: this.item)),
+              );
+            },
           ),
         ),
       ),

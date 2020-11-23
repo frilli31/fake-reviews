@@ -1,10 +1,11 @@
 import 'package:fake_reviews/providers/items_provider.dart';
 import 'package:fake_reviews/providers/log_provider.dart';
-import 'package:fake_reviews/screens/welcome_screen.dart';
+import 'package:fake_reviews/screens/1_welcome_screen.dart';
 import 'package:fake_reviews/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/rendering.dart';
 
 
 void main() {

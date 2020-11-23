@@ -1,12 +1,14 @@
 class Question {
   String text;
   bool allowMultipleAnswers;
+  bool numericQuestion;
   List<String> possibleAnswers;
 
   Question({
     this.text,
-    this.allowMultipleAnswers = false,
     this.possibleAnswers,
+    this.allowMultipleAnswers = false,
+    this.numericQuestion = false,
   });
 }
 
@@ -14,6 +16,10 @@ List<Question> questions = [
   Question(
     text: 'Sesso assegnato alla nascita',
     possibleAnswers: ['M', 'F'],
+  ),
+  Question(
+    text: 'Età',
+    numericQuestion: true,
   ),
   Question(
     text: 'Grado di istruzione',

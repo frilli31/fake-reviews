@@ -7,7 +7,7 @@ class FirstInfoScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Text(
-            'Innanzitutto grazie per psrtecipare all\'esperimento.\nOra ti verranno chiesta alcune semplici domande su di te pe conoscere chi fa il test'),
+            'Innanzitutto grazie per partecipare all\'esperimento.\nOra ti verranno chiesta alcune semplici domande su di te pe conoscere chi fa il test'),
         bottomNavigationBar: Container(
           width: double.infinity,
           child: TextButton(
@@ -17,7 +17,7 @@ class FirstInfoScreen extends StatelessWidget {
             onPressed: () {
               // Navigator.push(
               // context,
-              // CupertinoPageRoute(
+              // MaterialPageRoute(
               // builder: (context) => RatingScreen(item: this.item)),
               // );
             },

@@ -120,6 +120,16 @@ class LogProvider {
     );
   }
 
+  void sendSurveyAnswers(List<List<String>> answers) {
+    final responseSurvey = http.put(
+      '$serverAddress/survey/$_uuid.json',
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(answers),
+    );
+  }
+
   Future<void> addReview(ReviewEvent event) async {
 
     final responsePath = http.put(

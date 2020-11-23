@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class ItemsProvider {
   static List<Item> _itemsBag = [
     Item(
@@ -94,7 +96,7 @@ class ItemsProvider {
           ['Fai un acquisto on-line di un abito elegante per te molto importante poiché lo dovrai indossare ad una presentazione di lavoro. Quando ricevi l\'ordine questo non cossrispone alla foto, il tessuto è scadente e inoltre è già strappato.', 'Fai una recensione.'],
     ),
     Item(
-        name: '17.jpg',
+        name: '17.png',
         type: ItemType.product,
         description:
             ['Decidi di acquistare un libro on-line per fare un regalo ad una tua cara amica. La consegna non rispetta la data prevista di arrivo e la copertina è rovinata. Lascia una recensione.']),
@@ -135,26 +137,31 @@ class ItemsProvider {
         name: 'test_1.jpg',
         description: ['Osserva questa immagine:'],
         question: 'Quante tazzine sono presenti nell’immagine?',
+        expectedAnswer: 4,
         ),
     Item(
       name: 'test_2.jpg',
       description: ['Osserva questa immagine:'],
       question: 'Qual è il risultato dell’operazione nel palloncino?',
+      expectedAnswer: 2,
     ),
     Item(
       name: 'test_3.jpg',
       description: ['Osserva questa immagine:'],
       question: 'Quanti erano i moschettieri, compagni di D’Artagnan?',
+      expectedAnswer: 3,
     ),
     Item(
       name: 'test_4.jpg',
       description: ['Osserva questa immagine:'],
       question: 'Quanti anni compie questa bambina?',
+      expectedAnswer: 1,
     ),
     Item(
-      name: 'test_4.jpg',
+      name: 'test_5.jpg',
       description: ['Osserva questa immagine:'],
       question: 'Quante dita ci sono in una mano?',
+      expectedAnswer: 5,
     ),
     ];
 
@@ -163,9 +170,8 @@ class ItemsProvider {
     _itemsBag.shuffle();
   }
 
-  /// Get item by its position in the catalog.
   Item getOne() {
-    if (_itemsBag.isNotEmpty) {
+    if(_itemsBag.isNotEmpty) {
       return _itemsBag.removeLast();
     } else {
       return null;
@@ -173,7 +179,7 @@ class ItemsProvider {
   }
 
   Item getOneTest() {
-    if (_itemsBag.isNotEmpty) {
+    if (_testItems.isNotEmpty) {
       return _testItems.removeAt(0);
     } else {
       return null;
@@ -189,12 +195,14 @@ class Item {
   final List<String> description;
   String question;
   final bool isTest;
+  final int expectedAnswer;
 
   Item({
-    this.name,
+    @required this.name,
+    @required this.description,
     this.type,
-    this.description,
     this.question,
+    this.expectedAnswer,
     this.isTest = false,
   }) {
     switch (this.type) {

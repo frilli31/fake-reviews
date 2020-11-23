@@ -1,9 +1,14 @@
+import 'package:fake_reviews/providers/items_provider.dart';
 import 'package:fake_reviews/providers/log_provider.dart';
+import 'package:fake_reviews/screens/2_survey_screen.dart';
+import 'package:fake_reviews/screens/7_description_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'instruction_screen.dart';
+import '4_test_description_screen.dart';
+import '3_instruction_screen.dart';
+import '8_conclusion_screeen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -25,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 PageRouteBuilder(
-                  pageBuilder: (c, a1, a2) => InstructionScreen(),
+                  pageBuilder: (c, a1, a2) => SurveyScreen(),
                   transitionsBuilder: (c, anim, a2, child) =>
                       FadeTransition(opacity: anim, child: child),
                   transitionDuration: Duration(milliseconds: 500),

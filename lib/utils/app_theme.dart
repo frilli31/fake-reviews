@@ -3,57 +3,48 @@ import 'package:flutter/material.dart';
 import 'app_color.dart';
 
 class AppTheme {
-  get darkTheme => ThemeData(
-    primarySwatch: Colors.grey,
-    appBarTheme: AppBarTheme(
-        brightness: Brightness.dark, color: AppColors.textBlack),
-    inputDecorationTheme: InputDecorationTheme(
-      hintStyle: TextStyle(color: AppColors.textGrey),
-      labelStyle: TextStyle(color: AppColors.white),
-    ),
-    brightness: Brightness.dark,
-    canvasColor: AppColors.lightGreyDarkMode,
-    accentColor: AppColors.darkPink,
-    accentIconTheme: IconThemeData(color: Colors.white),
-  );
-
   get lightTheme => ThemeData(
     textTheme: Typography.blackMountainView
         .merge(TextTheme(
       bodyText1: TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         height: 1.2,
         letterSpacing: 0.2,
         textBaseline: TextBaseline.alphabetic,
         fontStyle: FontStyle.normal,
         ),
+      bodyText2: TextStyle(
+        fontSize: 16,
+        height: 1.2,
+        letterSpacing: 0.2,
+        textBaseline: TextBaseline.alphabetic,
+        fontStyle: FontStyle.normal,
+      ),
       ),
     ),
-    scaffoldBackgroundColor: Colors.deepOrange[50],
-    primaryColor: Colors.deepOrange[800],
-    accentColor: Colors.cyan[600],
-    primarySwatch: Colors.deepPurple,
-    textButtonTheme: TextButtonThemeData(
+    backgroundColor: AppColors.background,
+    scaffoldBackgroundColor: AppColors.background,
+    primarySwatch: AppColors.primarySwatch,
+    elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+        backgroundColor: MaterialStateProperty.all<Color>(AppColors.buttonBackground),
         elevation: MaterialStateProperty.all<double>(5.0),
         textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(
-          fontStyle: FontStyle.italic,
           fontWeight: FontWeight.bold,
+          fontSize: 16,
           letterSpacing: 1.0,
+          color: AppColors.buttonText,
         )),
       ),
     ),
-    appBarTheme: AppBarTheme(
-      brightness: Brightness.light,
-      color: AppColors.grey2,
+
+    cardTheme: CardTheme(
+      elevation: 3,
+      color: AppColors.cardBackground,
+      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
     ),
-    inputDecorationTheme: InputDecorationTheme(
-      hintStyle: TextStyle(color: AppColors.textGrey),
-      labelStyle: TextStyle(color: AppColors.white),
-    ),
-    canvasColor: AppColors.white,
+
+    canvasColor: AppColors.canvasBackground,
     brightness: Brightness.light,
-    accentIconTheme: IconThemeData(color: Colors.black),
   );
 }

@@ -1,7 +1,7 @@
 import 'package:fake_reviews/providers/items_provider.dart';
 import 'package:fake_reviews/providers/log_provider.dart';
-import 'package:fake_reviews/screens/conclusion_screeen.dart';
-import 'package:fake_reviews/screens/description_screen.dart';
+import 'package:fake_reviews/screens/7_description_screen.dart';
+import 'package:fake_reviews/screens/8_conclusion_screeen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -31,13 +31,13 @@ class _RatingScreenState extends State<RatingScreen> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) => {
-      if (firstTime)
-        {
-          context.read<LogProvider>().addRenderedEvent(
-              ViewRenderedEvent(item: widget.item.name, view: 'Rating'))
-        },
-      firstTime = false
-    });
+          if (firstTime)
+            {
+              context.read<LogProvider>().addRenderedEvent(
+                  ViewRenderedEvent(item: widget.item.name, view: 'Rating'))
+            },
+          firstTime = false
+        });
 
     List<DragTarget> stars = [];
     for (var i = 1; i <= 5; i++)
@@ -96,7 +96,7 @@ class _RatingScreenState extends State<RatingScreen> {
           }
           Navigator.push(
             context,
-            CupertinoPageRoute(builder: builder),
+            MaterialPageRoute(builder: builder),
           );
         },
       ));
@@ -104,11 +104,10 @@ class _RatingScreenState extends State<RatingScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: SafeArea(
-        child: Card(
-          child: Container(
-            child: Column(children: [
+        child: Scaffold(
+          body: Column(children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: Text(
                   widget.item.question,
                   style: Theme.of(context).textTheme.headline5,
@@ -116,50 +115,29 @@ class _RatingScreenState extends State<RatingScreen> {
                 ),
               ),
               Expanded(
-                child: Card(
-                  margin: EdgeInsets.all(10),
-                  child:  Image.asset(
-                    'images/${widget.item.name}',
-                    fit: BoxFit.contain,
-                  ),
+                child: Center(
+                  child: Card(
+                    child: Image.asset(
+                      'images/${widget.item.name}',
+                      fit: BoxFit.contain,
+                    ),
+                  )
                 ),
               ),
               GestureLogger(
-                  child: Container(
-                    height: 200,
-                    width: 360,
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        Positioned(
-                          top: 0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: stars,
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 32,
-                          // right: 0,
-                          child: Draggable(
-                            child: Icon(
-                              Icons.edit,
-                              size: 48,
-                            ),
-                            childWhenDragging: Container(),
-                            feedback: Icon(
-                              Icons.edit,
-                              size: 48,
-                            ),
-                            onDraggableCanceled: (Velocity _v, Offset _o) {},
-                          ),
-                        ),
-                      ],
+                child: Container(
+                  height: 200,
+                  width: 360,
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: stars,
                     ),
-                  )),
+                  ),
+                ),
+              ),
             ]),
           ),
-        ),
       ),
     );
   }
