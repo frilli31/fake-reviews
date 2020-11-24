@@ -16,9 +16,13 @@ class SurveyScreen extends StatefulWidget {
 
 class _SurveyScreenState extends State<SurveyScreen> {
   int numberOfQuestions = questions.length;
-  List<List<String>> _answers = List.generate(questions.length, (i) => i == 1 ? ['23'] : List.empty(growable: true));
+  List<List<String>> _answers = List.generate(
+      questions.length, (i) => i == 1 ? ['23'] : List.empty(growable: true));
   final ItemScrollController itemScrollController = ItemScrollController();
-  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+
+  int unansweredQuestion = -1;
 
   void addToAnswers(int index, String value) {
     setState(() {
@@ -68,11 +72,31 @@ class _SurveyScreenState extends State<SurveyScreen> {
               child: BottomButton(
                 text: 'Avanti',
                 onPressed: () {
-                  final unfilledQuestion = _answers.indexWhere(
-                          (element) => element.isEmpty);
+                  final unfilledQuestion =
+                  _answers.indexWhere((element) => element.isEmpty);
                   if (unfilledQuestion != -1) {
                     itemScrollController.scrollTo(
-                        index: unfilledQuestion + 1, duration: Duration(milliseconds: 500));
+                        index: unfilledQuestion + 1,
+                        duration: Duration(milliseconds: 600));
+                    final snackBar = SnackBar(
+                      content: Text(
+                        'Prima di proseguire devi rispondere a tutte le domande',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      //backgroundColor: Colors.red,
+                      action: SnackBarAction(
+                        label: 'Ho capito',
+                        textColor: Colors.red,
+                        onPressed: () {
+                          // Some code to undo the change.
+                        },
+                      ),
+                    );
+                    Scaffold.of(context).showSnackBar(snackBar);
+
+                    setState(() {
+                      unansweredQuestion = unfilledQuestion;
+                    });
                   } else {
                     context.read<LogProvider>().sendSurveyAnswers(_answers);
                     Navigator.push(
@@ -89,43 +113,49 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
           final Question item = questions[indexOfQuestion];
 
-          var answersWidget;
-          if (item.text == 'Se si, più frequentemente, in quale situazione?'
-              && _answers[indexOfQuestion - 1].isNotEmpty
-              && _answers[indexOfQuestion - 1][0] == 'Mai') {
+          List<Widget> answersWidget;
+          if (item.text == 'Se si, più frequentemente, in quale situazione?' &&
+              _answers[indexOfQuestion - 1].isNotEmpty &&
+              _answers[indexOfQuestion - 1][0] == 'Mai') {
             _answers[indexOfQuestion] = ['Mai'];
             return Container();
-          }
-          else if (item.numericQuestion) {
-            answersWidget = [NumberPicker.integer(
-                initialValue: int.tryParse(_answers[indexOfQuestion][0]),
-                minValue: 1,
-                maxValue: 100,
-                onChanged: (number) {
-                  overwriteAnswer(indexOfQuestion, number.toString());
-                })
+          } else if (item.numericQuestion) {
+            answersWidget = [
+              NumberPicker.integer(
+                  initialValue: int.tryParse(_answers[indexOfQuestion][0]),
+                  minValue: 1,
+                  maxValue: 100,
+                  onChanged: (number) {
+                    overwriteAnswer(indexOfQuestion, number.toString());
+                  })
             ];
-          }
-          else if (item.allowMultipleAnswers == false) {
+          } else if (item.allowMultipleAnswers == false) {
             answersWidget = item.possibleAnswers.map((answer) {
               return RadioListTile<String>(
                 title: Text(
                   answer,
-                  style: Theme.of(context).textTheme.bodyText2,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .bodyText2,
                 ),
                 dense: true,
                 value: answer,
-                groupValue: _answers[indexOfQuestion].isNotEmpty ? _answers[indexOfQuestion][0] : '',
+                groupValue: _answers[indexOfQuestion].isNotEmpty
+                    ? _answers[indexOfQuestion][0]
+                    : '',
                 onChanged: (String value) {
                   overwriteAnswer(indexOfQuestion, value);
 
-                  if(indexOfQuestion != questions.length -1)
-                    Future.delayed(const Duration(milliseconds: 200)).then((value) =>
-                      itemScrollController.scrollTo(
-                          index: index + 1, duration: Duration(milliseconds: 300)));
+                  if (indexOfQuestion != questions.length - 1)
+                    Future.delayed(const Duration(milliseconds: 200)).then(
+                            (value) =>
+                            itemScrollController.scrollTo(
+                                index: index + 1,
+                                duration: Duration(milliseconds: 300)));
                 },
               );
-            });
+            }).toList();
           } else {
             answersWidget = item.possibleAnswers.map((answer) {
               return CheckboxListTile(
@@ -143,7 +173,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
                     removeFromAnswers(indexOfQuestion, answer);
                 },
               );
-            });
+            }).toList();
           }
           return Card(
             child: Padding(
@@ -157,10 +187,21 @@ class _SurveyScreenState extends State<SurveyScreen> {
                       item.text,
                       textAlign: TextAlign.start,
                       softWrap: true,
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .bodyText1,
                     ),
                   ),
                   ...answersWidget,
+                  unansweredQuestion == indexOfQuestion
+                      ? Container(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      child: Text(
+                        'Prima di proseguire devi rispondere a tutte le domande',
+                        style: TextStyle(color: Colors.red),
+                      ))
+                      : Container(),
                 ],
               ),
             ),
