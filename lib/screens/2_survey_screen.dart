@@ -84,7 +84,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
                         style: TextStyle(color: Colors.red),
                       ),
                       action: SnackBarAction(
-                        label: 'Ok',
+                        label: 'Nascondi',
                         textColor: Colors.red,
                         onPressed: () {
                           // Some code to undo the change.

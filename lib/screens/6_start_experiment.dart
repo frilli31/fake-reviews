@@ -29,30 +29,29 @@ class StartExperiment extends StatelessWidget {
                       'Complimenti!',
                       style: Theme.of(context).textTheme.headline4,
                     ),
-                    Container(
-                        padding: EdgeInsets.only(top: 10),
-                        width: double
-                            .infinity // used to force the column to expand to full width
-                        ),
+                    Padding(padding: EdgeInsets.only(top: 10)),
                     Text(
                       'Ora avrà inizio l\'esperimento',
                       style: Theme.of(context).textTheme.headline6,
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),
               ),
               Expanded(
-                flex: 2,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: 200,
-                    maxHeight: 200,
-                  ),
-                  child: Image.asset(
-                    'images/start_experiment.png',
-                    fit: BoxFit.scaleDown,
-                  ),
-                ),
+                  flex: 2,
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: 200,
+                        maxHeight: 200,
+                      ),
+                      child: Image.asset(
+                        'images/start_experiment.png',
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
+                  )
               ),
             ],
           ),

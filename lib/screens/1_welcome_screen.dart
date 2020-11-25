@@ -1,14 +1,8 @@
-import 'package:fake_reviews/providers/items_provider.dart';
 import 'package:fake_reviews/providers/log_provider.dart';
 import 'package:fake_reviews/screens/2_survey_screen.dart';
-import 'package:fake_reviews/screens/7_description_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '4_test_description_screen.dart';
-import '3_instruction_screen.dart';
-import '8_conclusion_screeen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -44,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
                     child: Center(
                       child: Image.asset(
                         'images/logo.png',
-                        height: 150,
+                        height: 144,
                         fit: BoxFit.fill,
                       ),
                     )),
@@ -53,17 +47,24 @@ class WelcomeScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Benvenuto in FakeReview',
-                        textScaleFactor: 2,
-                        softWrap: true,
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .headline4,
+                        textAlign: TextAlign.center,
                       ),
                     )),
                 Expanded(
                     flex: 3,
                     child: Center(
                         child: Text(
-                      'Tocca per continuare',
-                      textScaleFactor: 1,
-                    ))),
+                          'Tocca per continuare',
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .bodyText2,
+                          textAlign: TextAlign.center,
+                        ))),
                 Spacer(
                   flex: 1,
                 )

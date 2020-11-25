@@ -17,7 +17,7 @@ class BottomButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       width: double.infinity,
       child: ElevatedButton(
-        child: new Text(
+        child: Text(
           text.toUpperCase(),
           style: Theme.of(context)
               .textTheme
