@@ -19,7 +19,10 @@ class BottomButton extends StatelessWidget {
       child: ElevatedButton(
         child: new Text(
           text.toUpperCase(),
-          style: TextStyle(color: AppColors.buttonText),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2
+              .copyWith(color: AppColors.buttonText),
         ),
         onPressed: onPressed,
       ),

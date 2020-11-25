@@ -83,9 +83,8 @@ class _SurveyScreenState extends State<SurveyScreen> {
                         'Prima di proseguire devi rispondere a tutte le domande',
                         style: TextStyle(color: Colors.red),
                       ),
-                      //backgroundColor: Colors.red,
                       action: SnackBarAction(
-                        label: 'Ho capito',
+                        label: 'Ok',
                         textColor: Colors.red,
                         onPressed: () {
                           // Some code to undo the change.
@@ -198,9 +197,9 @@ class _SurveyScreenState extends State<SurveyScreen> {
                       ? Container(
                       padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Text(
-                        'Prima di proseguire devi rispondere a tutte le domande',
-                        style: TextStyle(color: Colors.red),
-                      ))
+                        'Prima di proseguire devi rispondere a questa domanda',
+                            style: TextStyle(color: Colors.red),
+                          ))
                       : Container(),
                 ],
               ),

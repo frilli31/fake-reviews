@@ -36,6 +36,7 @@ flutter_icons:
   image_path: "images/logo.png"
   android: true
   ios: true
+  adaptive_icon_background: "#ffffff"
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
