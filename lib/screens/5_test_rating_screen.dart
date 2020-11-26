@@ -18,12 +18,13 @@ class TestRatingScreen extends StatefulWidget {
   _TestRatingScreenState createState() => _TestRatingScreenState();
 }
 
+const double _starPadding = 8.0;
+const double _starSize = 44;
+final double _oneStarSize = _starSize + 2 * _starPadding;
+
 class _TestRatingScreenState extends State<TestRatingScreen> {
   int elementSelected = -1;
   bool firstTime = true;
-
-  final double starPadding = 8.0;
-  final double starSize = 44;
 
   String state = 'init';
 
@@ -43,25 +44,26 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final int targetAnswer = 4;
-    final double oneStarSize = starSize + 2 * starPadding;
-
-    final double startAnimationLeft = MediaQuery.of(context).size.width / 2 - 2 * oneStarSize - 22;
-    final double endAnimationLeft = startAnimationLeft + (widget.item.expectedAnswer - 1) * oneStarSize + 1;
+    final double startAnimationLeft =
+        MediaQuery.of(context).size.width / 2 - 2 * _oneStarSize - 22;
+    final double endAnimationLeft = startAnimationLeft +
+        (widget.item.expectedAnswer - 1) * _oneStarSize +
+        1;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if(firstTime) {
-          context.read<LogProvider>().addRenderedEvent(ViewRenderedEvent(item: widget.item.name, view: 'Rating'));
+      if (firstTime) {
+        context.read<LogProvider>().addRenderedEvent(
+            ViewRenderedEvent(item: widget.item.name, view: 'Rating'));
 
+        setState(() {
+          firstTime = false;
+        });
+
+        Future.delayed(const Duration(milliseconds: 2000)).then((value) {
           setState(() {
-            firstTime = false;
+            state = 'animationInProgress';
           });
-
-          Future.delayed(const Duration(milliseconds: 2000)).then((value) {
-            setState(() {
-              state = 'animationInProgress';
-            });
-          });
+        });
       }
     });
 
@@ -72,12 +74,12 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
           if (i == 1) {
             return Draggable(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: starPadding),
+                padding: EdgeInsets.symmetric(horizontal: _starPadding),
                 child: Icon(
                   i <= elementSelected
                       ? Icons.star_rounded
                       : Icons.star_border_rounded,
-                  size: starSize,
+                  size: _starSize,
                   //color: Colors.yellow,
                 ),
               ),
@@ -85,13 +87,13 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
             );
           }
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: starPadding),
+            padding: EdgeInsets.symmetric(horizontal: _starPadding),
             child: Icon(
               i <= elementSelected
                   ? Icons.star_rounded
                   : Icons.star_border_rounded,
               // color: Colors.yellow,
-              size: starSize,
+              size: _starSize,
             ),
           );
         },
@@ -127,41 +129,61 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
         },
       ));
 
-    final title = Positioned(
-      top: 0,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-        child: Text(
-          widget.item.question,
-          style: Theme.of(context).textTheme.headline5,
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          softWrap: true,
-        ),
-      ),
-    );
-
-
     return WillPopScope(
       onWillPop: () async => false,
       child: SafeArea(
         child: Scaffold(
           body: Stack(
-            alignment: Alignment.center,
+              alignment: Alignment.center,
               fit: StackFit.passthrough,
               children: [
-                title,
-                Positioned.fill(
-                  top: 160,
+                Positioned(
+                  top: 0,
                   bottom: 160,
-                  child: Center(
-                      child: Card(
-                        child: Image.asset(
-                          'images/${widget.item.name}',
-                          fit: BoxFit.scaleDown,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 10),
+                        child: Center(
+                          child: Text(
+                            widget.item.question,
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .headline5,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
+                      ),
+                      Flexible(
+                          child: Container(
+                              constraints: BoxConstraints(
+                                maxWidth: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width,
+                                maxHeight: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height - 320,
+                              ),
+                              child: Card(
+                                child: Image.asset(
+                                  'images/${widget.item.name}',
+                                  fit: BoxFit.scaleDown,
+                                ),
+                              )
+                          )
                       )
+                    ],
                   ),
                 ),
                 Positioned(
@@ -180,17 +202,19 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                   ),
                 ),
                 AnimatedPositioned(
-                  bottom: 42,
-                  left: state != 'animationInProgress' ? startAnimationLeft : endAnimationLeft,
-                  onEnd: () {
-                    setState(() {
-                      state = 'animationFinished';
-                      showAnimationIn5Seconds();
-                    });
-                  },
-                  child: state == 'animationInProgress'
-                    ? Icon(Icons.touch_app, size: starSize + 4)
-                      : Container(),
+                    bottom: 42,
+                    left: state != 'animationInProgress'
+                        ? startAnimationLeft
+                        : endAnimationLeft,
+                    onEnd: () {
+                      setState(() {
+                        state = 'animationFinished';
+                        showAnimationIn5Seconds();
+                      });
+                    },
+                    child: state == 'animationInProgress'
+                        ? Icon(Icons.touch_app, size: _starSize + 4)
+                        : Container(),
                     duration: Duration(milliseconds: 2000))
               ]),
         ),

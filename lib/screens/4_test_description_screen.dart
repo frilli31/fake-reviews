@@ -1,6 +1,5 @@
 import 'package:fake_reviews/components/bottom_button.dart';
 import 'package:fake_reviews/providers/items_provider.dart';
-import 'package:fake_reviews/screens/8_rating_screen.dart';
 import 'package:fake_reviews/screens/5_test_rating_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,26 +18,36 @@ class TestDescriptionScreen extends StatelessWidget {
       onWillPop: () async => false,
       child: SafeArea(
         child: Scaffold(
-          body: Column(children: [
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-              child: Text(
-                item.description.first,
-                style: Theme.of(context).textTheme.headline5,
-                textAlign: TextAlign.start,
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: Card(
-                  child: Image.asset(
-                    'images/${item.name}',
-                    fit: BoxFit.scaleDown,
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Center(
+                  child: Text(
+                    item.description[0],
+                    style: Theme.of(context).textTheme.headline5,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
-            )
-          ]),
+              Flexible(
+                  child: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width,
+                        maxHeight: MediaQuery.of(context).size.height - 320,
+                      ),
+                      child: Card(
+                        child: Image.asset(
+                          'images/${item.name}',
+                          fit: BoxFit.scaleDown,
+                        ),
+                      )))
+            ],
+          ),
           bottomNavigationBar: BottomButton(
             text: "Avanti",
             onPressed: () {

@@ -1,7 +1,5 @@
-import 'package:fake_reviews/providers/log_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ConclusionScreen extends StatelessWidget {
   @override
