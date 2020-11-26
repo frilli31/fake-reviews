@@ -34,18 +34,18 @@ class TestDescriptionScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Flexible(
-                  child: Container(
-                      constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width,
-                        maxHeight: MediaQuery.of(context).size.height - 320,
-                      ),
-                      child: Card(
-                        child: Image.asset(
-                          'images/${item.name}',
-                          fit: BoxFit.scaleDown,
-                        ),
-                      )))
+              Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width,
+                    maxHeight: MediaQuery.of(context).size.height - 320,
+                  ),
+                  child: Card(
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                    child: Image.asset(
+                      'images/${item.name}',
+                      fit: BoxFit.scaleDown,
+                    ),
+                  ))
             ],
           ),
           bottomNavigationBar: BottomButton(
