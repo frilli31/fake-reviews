@@ -25,13 +25,14 @@ class ConclusionScreen extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 32.0),
                           child: Text(
-                            'L’esperimento è concluso, grazie per la collaborazione.',
-                            textScaleFactor: 1.5,
-                            softWrap: true,
-                          ),
+                        'L’esperimento è concluso,\ngrazie per la collaborazione.',
+                        style: Theme.of(context).textTheme.headline5,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                      ),
                         ))),
                 Spacer(
-                  flex: 3,
+                  flex: 2,
                 )
               ],
             ),

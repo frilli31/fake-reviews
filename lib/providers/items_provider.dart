@@ -7,8 +7,8 @@ class ItemsProvider {
       'Contrariato, comunichi al negozio la deludente esperienza. Quest\'ultimo ti promette allora, 3 articoli della categoria di accessori per la telefonia in cambio di una recensione positiva.'
     ]),
     Item(name: '2.jpg', type: ItemType.service, description: [
-      'Riscontri un\'incongruenza rispetto al servizio previsto dalla promozione attiva sulla tua carta sim, decidi, quindi di chiamare l\'assistenza telefonica per chiedere spiegazioni. L\'operatore in linea è molto scortese, no da ascolto alle tue richieste e ti tratta con estrema saccenza.',
-      'Amareggiato dell\' accaduto, gli comunichi che lascerai una recensione negativa al servizio. Questi, allora, chiedendoti scusa ti promette, in cambio di una valutazione positiva, un\'offerta speciale di 30 GB di internet della durata di 3 mesi.'
+      'Riscontri un\'incongruenza rispetto al servizio previsto dalla promozione attiva sulla tua carta sim, decidi, quindi di chiamare l\'assistenza telefonica per chiedere spiegazioni. L\'operatore in linea è molto scortese, non da ascolto alle tue richieste e ti tratta con estrema saccenza.',
+      'Amareggiato dell\'accaduto, gli comunichi che lascerai una recensione negativa al servizio. Questi, allora, chiedendoti scusa ti promette, in cambio di una valutazione positiva, un\'offerta speciale di 30 GB di internet della durata di 3 mesi.'
     ]),
     Item(
       name: '3.jpg',
@@ -137,8 +137,8 @@ class ItemsProvider {
       type: ItemType.product,
       description:
       [
-        'Durante la primavera un\'associazione che sostiene pazienti affetti da malattie rare è presente nelle piazze italiane per vendere delle ortensie, il cui ricavato verrà devoluto ai pazienti che non possono permettersi delle cure adeguate. Hai deciso di acquistarne una per il tuo giardino, nonostante il prezzo di gran lunga superiore rispetto al normale.',
-        'Al momento dell\'acquisto l\'ortensia era piuttosto sfiorita e appassita, l\'hai piantata in giardino ma è morta pochi giorni dopo. La tua amica Sara, che lavora come volontaria presso l\'associazione, ti chiede di lasciare una recensione positiva sul sito dell\'associazione per aiutarli a incrementare le vendite che non stanno andando molto bene.'
+        'Durante la primavera un\'associazione che sostiene pazienti affetti da malattie rare è presente nelle piazze italiane per vendere delle ortensie. Hai deciso di acquistarne una per il tuo giardino, nonostante il prezzo di gran lunga superiore rispetto al normale.',
+        'Al momento dell\'acquisto l\'ortensia era piuttosto sfiorita e appassita ed è morta pochi giorni dopo. La tua amica Sara, che lavora come volontaria presso l\'associazione, ti chiede di lasciare una recensione positiva sul sito dell\'associazione per aiutarli a incrementare le vendite che non stanno andando molto bene.'
       ],
     ),
   ];
