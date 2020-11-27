@@ -28,16 +28,26 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
 
   String state = 'init';
 
+  bool indication = false;
+
   void setElementSelected(index) {
     setState(() {
       elementSelected = index;
     });
   }
 
-  void showAnimationIn5Seconds() {
-    Future.delayed(const Duration(milliseconds: 5000)).then((value) {
+  void showAnimationInFuture() {
+    Future.delayed(const Duration(milliseconds: 12000)).then((value) {
       setState(() {
         state = 'animationInProgress';
+      });
+    });
+  }
+
+  void setTextAnimation() {
+    Future.delayed(const Duration(milliseconds: 3200)).then((value) {
+      setState(() {
+        indication = true;
       });
     });
   }
@@ -59,11 +69,20 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
           firstTime = false;
         });
 
-        Future.delayed(const Duration(milliseconds: 2000)).then((value) {
-          setState(() {
-            state = 'animationInProgress';
+        if (widget.item.name.contains('1'))
+          Future.delayed(const Duration(milliseconds: 1500)).then((value) {
+            setState(() {
+              state = 'animationInProgress';
+              setTextAnimation();
+            });
           });
-        });
+        else
+          Future.delayed(const Duration(milliseconds: 8000)).then((value) {
+            setState(() {
+              state = 'animationInProgress';
+              setTextAnimation();
+            });
+          });
       }
     });
 
@@ -97,9 +116,7 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
             ),
           );
         },
-        onWillAccept: (data) {
-          return true;
-        },
+        onWillAccept: (data) => true,
         onMove: (DragTargetDetails _) {
           setState(() {
             elementSelected = i;
@@ -150,8 +167,8 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                             .of(context)
                             .size
                             .width,
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
+                        padding:
+                        EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                         child: Center(
                           child: Text(
                             widget.item.question,
@@ -170,7 +187,8 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                                     .of(context)
                                     .size
                                     .width,
-                                maxHeight: MediaQuery
+                                maxHeight:
+                                MediaQuery
                                     .of(context)
                                     .size
                                     .height - 320,
@@ -180,12 +198,55 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                                   'images/${widget.item.name}',
                                   fit: BoxFit.scaleDown,
                                 ),
-                              )
-                          )
-                      )
+                              )))
                     ],
                   ),
                 ),
+                Positioned(
+                    bottom: 150,
+                    child: Container(
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: AnimatedOpacity(
+                            duration: Duration(milliseconds: 1000),
+                            opacity: indication ? 1 : 0,
+                            child: Text(
+                              "Ora tocca a te",
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .bodyText1,
+                              textAlign: TextAlign.center,
+                            ),
+                            onEnd: () {
+                              int delay = indication ? 2500 : 1000;
+                              Future.delayed(Duration(milliseconds: delay))
+                                  .then((value) {
+                                setState(() {
+                                  indication = !indication;
+                                });
+                              });
+                            })
+                    )
+                ),
+                AnimatedPositioned(
+                    bottom: 42,
+                    left: state != 'animationInProgress'
+                        ? startAnimationLeft
+                        : endAnimationLeft,
+                    onEnd: () {
+                      setState(() {
+                        state = 'animationFinished';
+                        showAnimationInFuture();
+                      });
+                    },
+                    child: state == 'animationInProgress'
+                        ? Icon(Icons.touch_app, size: _starSize + 4)
+                        : Container(),
+                    duration: Duration(milliseconds: 2500)),
                 Positioned(
                   bottom: 0,
                   child: GestureLogger(
@@ -201,21 +262,6 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                     ),
                   ),
                 ),
-                AnimatedPositioned(
-                    bottom: 42,
-                    left: state != 'animationInProgress'
-                        ? startAnimationLeft
-                        : endAnimationLeft,
-                    onEnd: () {
-                      setState(() {
-                        state = 'animationFinished';
-                        showAnimationIn5Seconds();
-                      });
-                    },
-                    child: state == 'animationInProgress'
-                        ? Icon(Icons.touch_app, size: _starSize + 4)
-                        : Container(),
-                    duration: Duration(milliseconds: 2000))
               ]),
         ),
       ),
