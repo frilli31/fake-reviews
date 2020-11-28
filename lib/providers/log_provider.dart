@@ -27,7 +27,6 @@ class LogProvider {
   final _uuid = uuid.v4(options: {'rng': UuidUtil.cryptoRNG});
 
 
-
   Future<void> sendDeviceInfo() async {
     Map<String, dynamic> deviceData = {};
     try {

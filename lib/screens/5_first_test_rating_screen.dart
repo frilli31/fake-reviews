@@ -205,20 +205,18 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                 Positioned(
                     bottom: 150,
                     child: Container(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.symmetric(horizontal: 40),
                         child: AnimatedOpacity(
                             duration: Duration(milliseconds: 1000),
                             opacity: indication ? 1 : 0,
                             child: Text(
-                              "Ora tocca a te",
-                              style: Theme
-                                  .of(context)
+                              "Trascina la prima stella per lasciare la recensione",
+                              style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1,
+                                  .bodyText1
+                                  .copyWith(
+                                      color: Colors.black.withOpacity(0.7)),
                               textAlign: TextAlign.center,
                             ),
                             onEnd: () {

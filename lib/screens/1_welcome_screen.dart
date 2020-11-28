@@ -18,19 +18,21 @@ class WelcomeScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      body: SafeArea(
-          child: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (c, a1, a2) => SurveyScreen(),
-                  transitionsBuilder: (c, anim, a2, child) =>
-                      FadeTransition(opacity: anim, child: child),
-                  transitionDuration: Duration(milliseconds: 500),
-                ),
-              );
-            },
+        body: SafeArea(
+      child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (c, a1, a2) => SurveyScreen(),
+                transitionsBuilder: (c, anim, a2, child) =>
+                    FadeTransition(opacity: anim, child: child),
+                transitionDuration: Duration(milliseconds: 500),
+              ),
+            );
+          },
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: [
                 Expanded(
@@ -54,23 +56,23 @@ class WelcomeScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     )),
-                Expanded(
-                    flex: 3,
-                    child: Center(
-                        child: Text(
-                          'Tocca per continuare',
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .bodyText2,
-                          textAlign: TextAlign.center,
-                        ))),
-                Spacer(
-                  flex: 1,
-                )
-              ],
-            ),
-          )),
-    );
+                    Expanded(
+                        flex: 3,
+                        child: Center(
+                            child: Text(
+                              'Tocca per continuare',
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .bodyText2,
+                              textAlign: TextAlign.center,
+                            ))),
+                    Spacer(
+                      flex: 1,
+                    )
+                  ],
+                ),
+              )),
+        ));
   }
 }
