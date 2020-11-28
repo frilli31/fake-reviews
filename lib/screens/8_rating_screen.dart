@@ -65,7 +65,7 @@ class _RatingScreenState extends State<RatingScreen> {
                   ? Icons.star_rounded
                   : Icons.star_border_rounded,
               // color: Colors.yellow,
-              size: 40,
+              size: 44,
             ),
           );
         },
