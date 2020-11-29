@@ -6,6 +6,7 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:uuid/uuid.dart';
 import 'package:uuid/uuid_util.dart';
 
@@ -16,16 +17,27 @@ final uuid = Uuid();
 class LogProvider {
 
   String serverAddress = DEBUG
-    ? 'http://10.0.2.2:9000/'
-    : 'https://fake-reviews-10f57.firebaseio.com';
-
-
+      ? 'http://10.0.2.2:9000/'
+      : 'https://fake-reviews-10f57.firebaseio.com';
 
   final List<List<TouchEvent>> _pointerEvents = [];
   final List<ViewRenderedEvent> _renderedEvent = [];
 
   final _uuid = uuid.v4(options: {'rng': UuidUtil.cryptoRNG});
 
+  Future<void> sendRequestOrRetry(url, data) async {
+    Response response = null;
+
+    do {
+      response = await http.put(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(data),
+      );
+    } while (response.statusCode != 200);
+  }
 
   Future<void> sendDeviceInfo() async {
     Map<String, dynamic> deviceData = {};
@@ -68,18 +80,12 @@ class LogProvider {
           'isPhysicalDevice': data.isPhysicalDevice,
         });
       }
-
     } on PlatformException {
-      deviceData.putIfAbsent('error', () => 'An error happened collecting device info');
+      deviceData.putIfAbsent(
+          'error', () => 'An error happened collecting device info');
     }
 
-    http.put(
-      '$serverAddress/deviceInfo/$_uuid.json',
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(deviceData),
-    );
+    sendRequestOrRetry('$serverAddress/deviceInfo/$_uuid.json', deviceData);
   }
 
 
@@ -110,56 +116,26 @@ class LogProvider {
   void addRenderedEvent(ViewRenderedEvent event) {
     _renderedEvent.add(event);
 
-    final responseRendered = http.put(
-      '$serverAddress/rendering/$_uuid.json',
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(_renderedEvent),
-    );
+    sendRequestOrRetry('$serverAddress/rendering/$_uuid.json', _renderedEvent);
   }
 
   void sendSurveyAnswers(List<List<String>> answers) {
-    final responseSurvey = http.put(
-      '$serverAddress/survey/$_uuid.json',
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(answers),
-    );
+    sendRequestOrRetry('$serverAddress/survey/$_uuid.json', answers);
   }
 
   Future<void> addReview(ReviewEvent event) async {
-
-    final responsePath = http.put(
-      '$serverAddress/pathStar/${event.item.split('.').first}/$_uuid.json',
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(_pointerEvents),
-    );
-
-    final responseRating = http.put(
-      '$serverAddress/ratings/${event.item.split('.').first}/$_uuid.json',
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(event.stars),
-    );
-
-    await responsePath;
+    sendRequestOrRetry('$serverAddress/pathStar/${event.item
+        .split('.')
+        .first}/$_uuid.json', [..._pointerEvents]);
+    sendRequestOrRetry('$serverAddress/ratings/${event.item
+        .split('.')
+        .first}/$_uuid.json', event.stars);
 
     _pointerEvents.clear();
   }
 
   void sendScreenDetails(ScreenDetails details) {
-    final responseRating = http.put(
-      '$serverAddress/screenDetails/$_uuid.json',
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(details),
-    );
+    sendRequestOrRetry('$serverAddress/screenDetails/$_uuid.json', details);
   }
 }
 
