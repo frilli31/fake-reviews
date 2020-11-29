@@ -61,7 +61,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
             return Container(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
               child: Text(
-                'Prima di cominciare ti chiediamo di rispondere ad alcune domande in modo da avere qualche informazione sul campione che ha partecipato all\'esperimento',
+                'Prima di cominciare ti chiediamo di rispondere ad alcune domande in modo da avere qualche informazione sul campione che ha partecipato all\'esperimento.\n\nInoltre ti preghiamo di rimanere connesso a internet durante lo svolgimento.',
                 style: Theme.of(context).textTheme.bodyText1,
                 softWrap: true,
               ),
