@@ -21,6 +21,7 @@ class _Instruction extends State<InstructionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -51,35 +52,46 @@ class _Instruction extends State<InstructionScreen> {
                 CarouselSlider(
                   items: instructions
                       .map((item) =>  Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ConstrainedBox(
+                    child: SingleChildScrollView(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 4),
+                        child: Container(
                             constraints: BoxConstraints(
-                              maxWidth: 150,
-                              maxHeight: 150,
+                              minHeight: height - 142,
                             ),
-                            child: Image.asset(
-                              'images/${item.image}',
-                              fit: BoxFit.scaleDown,
-                            ),
-                          ),
-                          Text(
-                            item.text,
-                            style: Theme.of(context).textTheme.bodyText2,
-                            softWrap: true,
-                          ),
-                        ],
-                      )
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    maxWidth: 150,
+                                    maxHeight: 150,
+                                  ),
+                                  child: Image.asset(
+                                    'images/${item.image}',
+                                    fit: BoxFit.scaleDown,
+                                  ),
+                                ),
+                                Text(
+                                  item.text,
+                                  style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .bodyText2,
+                                  textAlign: TextAlign.center,
+                                  softWrap: true,
+                                ),
+                              ],
+                            )
+                        )
                     ),
                   )
                   ).toList(),
                   carouselController: _controller,
                   options: CarouselOptions(
-                      height: MediaQuery.of(context).size.height - 150,
+                      height: height - 120,
                       enableInfiniteScroll: false,
                       enlargeCenterPage: true,
                       enlargeStrategy: CenterPageEnlargeStrategy.height,

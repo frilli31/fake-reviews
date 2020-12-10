@@ -14,32 +14,37 @@ class ItemsProvider {
       name: '3.jpg',
       type: ItemType.service,
       description: [
-        'Hai soggiornato, per una breve vacanza a Praga, in un hotel prenotato tramite il sito Trivago. Hai vissuto un incubo. La camera era scadente, sporca e per niente curata e hai trovato un bacherozzolo nella vasca da bagno. Il personale si è rivelato essere scortese e il servizio della colazione in camera non è stato rispettato.',
+        'Hai soggiornato, per una breve vacanza a Praga, in un hotel prenotato tramite il sito Trivago. Hai vissuto un incubo. La camera era scadente, sporca e per niente curata e hai trovato un insetto nella vasca da bagno. Il personale si è rivelato essere scortese e il servizio della colazione in camera non è stato rispettato.',
         'Tuttavia Trivago ti promette una disceta percentuale di guadagno di cambio di una recensione positiva all\'hotel.'
       ],
     ),
     Item(
       name: '4.png',
       type: ItemType.product,
-      description:
-          ['Acquisti un paio di jeans su un sito di capi d\'abbigliamento. All\'arrivo della consegna noti immediatamente che questi sono diversi dalla foto mostrata e inoltre il tessuto pare essere già consumato.','Insoddisfatto dell\'esperienza, decidi di lasciare una recensione negativa. Ma il negozio scusandosi dell\'imprevisto, ti promette un buono sconti di 50 € da utilizzare su un qualsiasi capo d\'abbigliamento a tua scelta in cambio di una buona recensione.'],
+      description: [
+        'Acquisti un paio di jeans su un sito di capi d\'abbigliamento. All\'arrivo della consegna noti immediatamente che questi sono diversi dalla foto mostrata e inoltre il tessuto pare essere già consumato.',
+        'Insoddisfatto dell\'esperienza, decidi di lasciare una recensione negativa. Ma il negozio scusandosi dell\'imprevisto, ti promette un buono sconto di 50 € da utilizzare su un qualsiasi capo d\'abbigliamento a tua scelta in cambio di una buona recensione.'
+      ],
     ),
-    Item(
-        name: '5.png',
-        type: ItemType.product,
-        description:
-            ['Esegui un ordine on-line di un tablet tramite Amazon. La consegna del prodotto non ha rispettato i tempi previsti. Inoltre, seppur economico, non risulta essere all\'altezza del marchio. Ha un hardware basico, che ne limita di molto l\'utilizzo, con continui rallentamenti.','A seguito delle tue lamentele, ti viene offerto un periodo di due anni di Amazon prime gratuito, chiedendoti, in cambio, una recensione positiva della tua esperienza.']),
+    Item(name: '5.png', type: ItemType.product, description: [
+      'Esegui un ordine on-line di un tablet tramite Amazon. La consegna del prodotto non ha rispettato i tempi previsti. Inoltre, seppur economico, non risulta essere all\'altezza del marchio. Ha un hardware basico, che ne limita di molto l\'utilizzo, con continui rallentamenti.',
+      'A seguito delle tue lamentele, ti viene offerto un periodo di due anni di Amazon Prime gratuito, chiedendoti, in cambio, una recensione positiva della tua esperienza.'
+    ]),
     Item(
       name: '6.jpg',
       type: ItemType.service,
-      description:
-          ['Hai soggiornato per un weekend in un albergo di cui sei rimasto pienamente soddisfatto. La camera in cui hai pernottato si è presentata spaziosa e molto curata nei dettagli oltre che silenziosa. La colazione, inclusa nel soggiorno, era varia abbondante e di qualità.','Ma, un tuo conoscente, proprietario di un hotel posizionato a pochi chilometri, ti offre la possibilità di trascorrere una settimana gratis, compresi i vari servizi, in cambio di una recensione negativa dell\'albergo in cui sei stato.'],
+      description: [
+        'Hai soggiornato per un weekend in un albergo di cui sei rimasto pienamente soddisfatto. La camera in cui hai pernottato si è presentata spaziosa e molto curata nei dettagli oltre che silenziosa. La colazione, inclusa nel soggiorno, era varia, abbondante e di qualità.',
+        'Ma, un tuo conoscente, proprietario di un hotel posizionato a pochi chilometri, ti offre la possibilità di trascorrere una settimana gratis, compresi i vari servizi, in cambio di una recensione negativa dell\'albergo in cui sei stato.'
+      ],
     ),
     Item(
       name: '7.jpg',
       type: ItemType.service,
-      description:
-          ['Poiché è stato aperto un nuovo centro estetico a pochi chilometri dal tuo decidi di prenotare una seduta di massagio per verificarne la qualità. L\' esperienza è stata positiva, il personale gentile e disponibile. L\'ambiente è confortevole e i prodotti utilizzati ed esposti sono di ottima qualità.','Tuttavia, per favorie il profitto del beauty center di cui sei proprietaria lasci una pessima recensione.'],
+      description: [
+        'Poiché è stato aperto un nuovo centro estetico a pochi chilometri dal tuo decidi di prenotare una seduta di massagio per verificarne la qualità. L\'esperienza è stata positiva, il personale gentile e disponibile. L\'ambiente è confortevole e i prodotti utilizzati ed esposti sono di ottima qualità.',
+        'Tuttavia, per favorie il profitto del beauty center di cui sei proprietaria lasci una pessima recensione.'
+      ],
     ),
     Item(
       name: '8.png',
@@ -95,7 +100,10 @@ class ItemsProvider {
       name: '16.png',
       type: ItemType.product,
       description:
-          ['Fai un acquisto on-line di un abito elegante per te molto importante poiché lo dovrai indossare ad una presentazione di lavoro. Quando ricevi l\'ordine questo non cossrispone alla foto, il tessuto è scadente e inoltre è già strappato.', 'Fai una recensione.'],
+      [
+        'Fai un acquisto on-line di un abito elegante per te molto importante poiché lo dovrai indossare ad una presentazione di lavoro. Quando ricevi l\'ordine questo non corrisponde alla foto, il tessuto è scadente e inoltre è già strappato.',
+        'Fai una recensione.'
+      ],
     ),
     Item(
         name: '17.png',
@@ -120,7 +128,7 @@ class ItemsProvider {
       description:
       [
         'Esegui un ordine on-line di un braccialetto. Alla consegna ti rendi conto che l\'articolo è bello a vedersi, ma qualitativamente scadente.',
-        'Dopo due giorni dal suo utilizzo si sono staccate delle pietre e il gancio di bloccaggio è difettoso, si apre con estrema facilà. Lascia una recensione.'
+        'Dopo due giorni dal suo utilizzo si sono staccate delle pietre e il gancio di bloccaggio è difettoso in quanto si apre con estrema facilità. Lascia una recensione.'
       ],
     ),
     Item(
@@ -129,7 +137,7 @@ class ItemsProvider {
       description:
       [
         'Hai bisogno di appendere alcune mensole nella tua nuova casa, ma non hai tempo per andare dal ferramenta ad acquistare un trapano. Decidi di acquistare un trapano on-line, da un sito internet che vanta utensili di buon qualità a prezzi ridotti.',
-        'Il trapano ti viene consegnato a casa con molto ritardo. La plastica da cui è ricoperto pare quella di un giocattolo. Le punte non sono buone, tanto che rovini il muro di casa lasciando dei buchi grossi e mal fatti'
+        'Il trapano ti viene consegnato a casa con molto ritardo. La plastica da cui è ricoperto pare quella di un giocattolo. Le punte non sono buone, tanto che rovini il muro di casa lasciando dei buchi grossi e mal fatti.'
       ],
     ),
     Item(

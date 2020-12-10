@@ -1,3 +1,4 @@
+import 'package:async/async.dart';
 import 'package:fake_reviews/providers/items_provider.dart';
 import 'package:fake_reviews/providers/log_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,6 +22,7 @@ class TestRatingScreen extends StatefulWidget {
 const double _starPadding = 8.0;
 const double _starSize = 44;
 final double _oneStarSize = _starSize + 2 * _starPadding;
+final double delayBetweenAnimations = 12000;
 
 class _TestRatingScreenState extends State<TestRatingScreen> {
   int elementSelected = -1;
@@ -28,7 +30,9 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
 
   String state = 'init';
 
-  bool indication = false;
+  bool hideClueAnimation = false;
+  bool textIndicationToggle = false;
+  var scheduledAnimation;
 
   void setElementSelected(index) {
     setState(() {
@@ -36,18 +40,18 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
     });
   }
 
-  void showAnimationInFuture() {
-    Future.delayed(const Duration(milliseconds: 12000)).then((value) {
-      setState(() {
-        state = 'animationInProgress';
-      });
-    });
+  void cancelAnimations() {
+    state = 'init';
+    scheduledAnimation?.cancel();
   }
 
-  void setTextAnimation() {
-    Future.delayed(const Duration(milliseconds: 3200)).then((value) {
+  void showAnimationInFuture(delay) {
+    cancelAnimations();
+    scheduledAnimation = CancelableOperation.fromFuture(
+            Future.delayed(Duration(milliseconds: delay)))
+        .then((value) {
       setState(() {
-        indication = true;
+        state = 'animationInProgress';
       });
     });
   }
@@ -69,20 +73,14 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
           firstTime = false;
         });
 
-        if (widget.item.name.contains('1'))
-          Future.delayed(const Duration(milliseconds: 1500)).then((value) {
-            setState(() {
-              state = 'animationInProgress';
-              setTextAnimation();
-            });
+        var delay = widget.item.name.contains('1') ? 1500 : 8000;
+
+        showAnimationInFuture(delay);
+        Future.delayed(Duration(milliseconds: delay + 3200)).then((value) {
+          setState(() {
+            textIndicationToggle = true;
           });
-        else
-          Future.delayed(const Duration(milliseconds: 8000)).then((value) {
-            setState(() {
-              state = 'animationInProgress';
-              setTextAnimation();
-            });
-          });
+        });
       }
     });
 
@@ -103,6 +101,18 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                 ),
               ),
               feedback: Container(),
+              onDragStarted: () {
+                cancelAnimations();
+                setState(() {
+                  hideClueAnimation = true;
+                });
+              },
+              onDragEnd: (DraggableDetails _) {
+                setState(() {
+                  hideClueAnimation = false;
+                });
+                showAnimationInFuture(8000);
+              },
             );
           }
           return Padding(
@@ -127,7 +137,38 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
             elementSelected = -1;
           });
         },
-        onAccept: (data) {
+        onAccept: (data) async {
+          if (elementSelected != widget.item.expectedAnswer) {
+            await showDialog(context: context,
+                builder: (_) =>
+                    AlertDialog(
+                        content: SingleChildScrollView(
+                          child: ListBody(
+                            children: <Widget>[
+                              Text(
+                                  'La risposta che hai selezionato (${elementSelected}) non è corretta',
+                                  style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .bodyText2),
+                            ],
+                          ),
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            child: Text('Riprova'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          )
+                        ]
+                    )
+            );
+            setState(() {
+              elementSelected = -1;
+            });
+            return;
+          }
           context.read<LogProvider>().addReview(
               ReviewEvent(stars: elementSelected, item: widget.item.name));
 
@@ -203,28 +244,32 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                   ),
                 ),
                 Positioned(
-                    bottom: 150,
+                    bottom: 140,
                     child: Container(
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width,
                         padding: EdgeInsets.symmetric(horizontal: 40),
                         child: AnimatedOpacity(
                             duration: Duration(milliseconds: 1000),
-                            opacity: indication ? 1 : 0,
+                            opacity: textIndicationToggle ? 1 : 0,
                             child: Text(
                               "Trascina la prima stella per lasciare la recensione",
-                              style: Theme.of(context)
+                              style: Theme
+                                  .of(context)
                                   .textTheme
                                   .bodyText1
                                   .copyWith(
-                                      color: Colors.black.withOpacity(0.7)),
+                                  color: Colors.black.withOpacity(0.7)),
                               textAlign: TextAlign.center,
                             ),
                             onEnd: () {
-                              int delay = indication ? 2500 : 1000;
+                              int delay = textIndicationToggle ? 2500 : 1000;
                               Future.delayed(Duration(milliseconds: delay))
                                   .then((value) {
                                 setState(() {
-                                  indication = !indication;
+                                  textIndicationToggle = !textIndicationToggle;
                                 });
                               });
                             })
@@ -238,10 +283,11 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                     onEnd: () {
                       setState(() {
                         state = 'animationFinished';
-                        showAnimationInFuture();
+                        showAnimationInFuture(12000);
                       });
                     },
-                    child: state == 'animationInProgress'
+                    child: state == 'animationInProgress' &&
+                        hideClueAnimation == false
                         ? Icon(Icons.touch_app, size: _starSize + 4)
                         : Container(),
                     duration: Duration(milliseconds: 2500)),

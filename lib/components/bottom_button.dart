@@ -14,7 +14,7 @@ class BottomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: EdgeInsets.only(left: 20, right: 20, bottom: 2),
       width: double.infinity,
       child: ElevatedButton(
         child: Text(

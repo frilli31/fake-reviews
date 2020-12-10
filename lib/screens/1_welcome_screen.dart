@@ -48,11 +48,8 @@ class WelcomeScreen extends StatelessWidget {
                     flex: 3,
                     child: Center(
                       child: Text(
-                        'Benvenuto in FakeReview',
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .headline4,
+                        'Benvenuto in Fake Reviews',
+                        style: Theme.of(context).textTheme.headline4,
                         textAlign: TextAlign.center,
                       ),
                     )),

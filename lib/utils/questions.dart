@@ -24,19 +24,19 @@ List<Question> questions = [
   Question(
     text: 'Grado di istruzione',
     possibleAnswers: [
-      'scuola elementare',
-      'scuola media',
-      'scuola superiore',
-      'laurea triennale',
-      'laurea magistrale (o a ciclo unico)',
-      'dottorato / specializzazione / master'
+      'Scuola elementare',
+      'Scuola media',
+      'Scuola superiore',
+      'Laurea triennale',
+      'Laurea magistrale (o a ciclo unico)',
+      'Dottorato / specializzazione / master'
     ],
   ),
   Question(
       text: 'Mediamente quanto utilizzi lo smartphone durante la giornata?',
       possibleAnswers: [
         'Non lo utilizzo',
-        'massimo 15 minuti al giorno',
+        'Massimo 15 minuti al giorno',
         'Dai 15 minuti ad 1 ora al giorno',
         '1-2 ore al giorno',
         'Più di 2 ora al giorno'
@@ -45,18 +45,18 @@ List<Question> questions = [
     text:
         'Quali sono le principali attività per le quali utilizzi lo smartphone?',
     possibleAnswers: [
-      'telefonate',
-      'videochiamate',
-      'chat',
-      'email',
-      'social networks (es. Facebook, Twitter, Instagram, etc...)',
-      'fotografie e video',
-      'musica',
-      'giochi',
-      'fitness e salute',
-      'acquisti online (es. Amazon, Justeat, Zalando, ecc.)',
-      'prenotazioni online (es. Booking)',
-      'altro'
+      'Telefonate',
+      'Videochiamate',
+      'Chat',
+      'Email',
+      'Social networks (es. Facebook, Twitter, Instagram, etc...)',
+      'Fotografie e video',
+      'Musica',
+      'Giochi',
+      'Fitness e salute',
+      'Acquisti online (es. Amazon, Justeat, Zalando, ecc.)',
+      'Prenotazioni online (es. Booking)',
+      'Altro'
     ],
     allowMultipleAnswers: true,
   ),
@@ -88,7 +88,7 @@ List<Question> questions = [
   ),
   Question(
     text:
-        'Dopo aver usufruito di un servizio di persona (es. cena ristorante, pernotto in albergo, ecc.), sei solito lasciare una recensione?',
+        'Dopo aver usufruito di un servizio di persona (es. cena in ristorante, pernotto in albergo, etc...), sei solito lasciare una recensione?',
     possibleAnswers: ['Mai', 'Raramente', 'A volte', 'Spesso', 'Sempre'],
   ),
   Question(
