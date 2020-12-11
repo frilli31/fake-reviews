@@ -15,6 +15,7 @@ class DescriptionScreen extends StatefulWidget {
 }
 
 class _DescriptionScreenState extends State<DescriptionScreen> {
+  var _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +23,10 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
 
     final List<Widget> phrases = item.description.map((phrase) {
       return Container(
-        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: Text(
           phrase,
-          style: Theme
-              .of(context)
-              .textTheme
-              .bodyText1,
+          style: Theme.of(context).textTheme.bodyText1,
           textAlign: TextAlign.start,
         ),
       );
@@ -40,6 +38,7 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
         child: Scaffold(
           body: Container(
               child: SingleChildScrollView(
+                  controller: _controller,
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
                       maxWidth: MediaQuery
@@ -52,11 +51,11 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
                           .height - MediaQuery
                           .of(context)
                           .padding
-                          .vertical - 52,
+                          .vertical - 56,
                       maxHeight: double.infinity,
                     ),
                     child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -92,11 +91,16 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
           bottomNavigationBar: BottomButton(
             text: "Avanti",
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => RatingScreen(item: item)),
-              );
+              if (_controller.position.pixels !=
+                  _controller.position.maxScrollExtent)
+                _controller.animateTo(_controller.position.maxScrollExtent,
+                    duration: Duration(milliseconds: 200), curve: Curves.ease);
+              else
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => RatingScreen(item: item)),
+                );
             },
           ),
         ),

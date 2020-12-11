@@ -57,8 +57,8 @@ class _Instruction extends State<InstructionScreen> {
                             horizontal: 16.0, vertical: 4),
                         child: Container(
                             constraints: BoxConstraints(
-                              minHeight: height - 142,
-                            ),
+                              minHeight: height - 182,
+                                      ),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -91,7 +91,7 @@ class _Instruction extends State<InstructionScreen> {
                   ).toList(),
                   carouselController: _controller,
                   options: CarouselOptions(
-                      height: height - 120,
+                      height: height - 160,
                       enableInfiniteScroll: false,
                       enlargeCenterPage: true,
                       enlargeStrategy: CenterPageEnlargeStrategy.height,
@@ -112,12 +112,13 @@ class _Instruction extends State<InstructionScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TestDescriptionScreen(item: item)),
+                            builder: (context) =>
+                                TestDescriptionScreen(item: item)),
                       );
                     }
                   },
                 ),
-              ]),
+              ])
         ),
       ),
     );

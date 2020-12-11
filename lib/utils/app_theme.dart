@@ -23,14 +23,16 @@ class AppTheme {
     primarySwatch: AppColors.primarySwatch,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(AppColors.buttonBackground),
-        elevation: MaterialStateProperty.all<double>(5.0),
-        textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(
-          fontSize: 16,
+        minimumSize: MaterialStateProperty.all<Size>(Size.fromHeight(44)),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(AppColors.buttonBackground),
+            elevation: MaterialStateProperty.all<double>(5.0),
+            textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(
+              fontSize: 16,
               letterSpacing: 0.2,
               color: AppColors.buttonText,
             )),
-      ),
+          ),
     ),
 
     cardTheme: CardTheme(

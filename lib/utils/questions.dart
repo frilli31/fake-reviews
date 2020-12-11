@@ -39,7 +39,7 @@ List<Question> questions = [
         'Massimo 15 minuti al giorno',
         'Dai 15 minuti ad 1 ora al giorno',
         '1-2 ore al giorno',
-        'Più di 2 ora al giorno'
+        'Più di 2 ore al giorno'
       ]),
   Question(
     text:
@@ -49,7 +49,7 @@ List<Question> questions = [
       'Videochiamate',
       'Chat',
       'Email',
-      'Social networks (es. Facebook, Twitter, Instagram, etc...)',
+      'Social networks (es. Facebook, Twitter, Instagram, ecc.)',
       'Fotografie e video',
       'Musica',
       'Giochi',
@@ -88,7 +88,7 @@ List<Question> questions = [
   ),
   Question(
     text:
-        'Dopo aver usufruito di un servizio di persona (es. cena in ristorante, pernotto in albergo, etc...), sei solito lasciare una recensione?',
+        'Dopo aver usufruito di un servizio di persona (es. cena in ristorante, pernotto in albergo, ecc.), sei solito lasciare una recensione?',
     possibleAnswers: ['Mai', 'Raramente', 'A volte', 'Spesso', 'Sempre'],
   ),
   Question(

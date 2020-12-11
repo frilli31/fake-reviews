@@ -244,12 +244,9 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                   ),
                 ),
                 Positioned(
-                    bottom: 140,
+                    bottom: 124,
                     child: Container(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
+                        width: MediaQuery.of(context).size.width,
                         padding: EdgeInsets.symmetric(horizontal: 40),
                         child: AnimatedOpacity(
                             duration: Duration(milliseconds: 1000),

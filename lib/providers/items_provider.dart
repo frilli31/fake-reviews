@@ -27,7 +27,7 @@ class ItemsProvider {
       ],
     ),
     Item(name: '5.png', type: ItemType.product, description: [
-      'Esegui un ordine on-line di un tablet tramite Amazon. La consegna del prodotto non ha rispettato i tempi previsti. Inoltre, seppur economico, non risulta essere all\'altezza del marchio. Ha un hardware basico, che ne limita di molto l\'utilizzo, con continui rallentamenti.',
+      'Esegui un ordine online di un tablet tramite Amazon. La consegna del prodotto non ha rispettato i tempi previsti. Inoltre, seppur economico, non risulta essere all\'altezza del marchio. Ha un hardware basico, che ne limita di molto l\'utilizzo, con continui rallentamenti.',
       'A seguito delle tue lamentele, ti viene offerto un periodo di due anni di Amazon Prime gratuito, chiedendoti, in cambio, una recensione positiva della tua esperienza.'
     ]),
     Item(
@@ -69,8 +69,10 @@ class ItemsProvider {
     Item(
       name: '11.jpg',
       type: ItemType.service,
-      description:
-          ['Decidi di ordinare una pizza on-line. La pizzeria rispetta l\'orario di consegna previsto. Il fattorino è gentile e cortese e la pizza è calda, dal sapore ottimo e l\'impasto è ben cucinato.','Lascia una recensione della tua esperienza.'],
+      description: [
+        'Decidi di ordinare una pizza online. La pizzeria rispetta l\'orario di consegna previsto. Il fattorino è gentile e cortese e la pizza è calda, dal sapore ottimo e l\'impasto è ben cucinato.',
+        'Lascia una recensione della tua esperienza.'
+      ],
     ),
     Item(
       name: '12.jpg',
@@ -88,20 +90,26 @@ class ItemsProvider {
       name: '14.png',
       type: ItemType.product,
       description:
-          ['Sei un musicista e devi recarti all\'estero per un concerto. All\'arrivo, sceso dall\'aereo, ti rendi conto che ti è stato smarrito il violino. Poiché non conosci bene la città in cui ti trovi, ordini un nuovo violino da un negozio di musica on-line.','La consegna è veloce e puntuale e il prodotto si presenta in ottime condizioni. Sollevato e soddisfatto della tua esperienza con il negozio, decidi di lasciare una recensione.'],
+      [
+        'Sei un musicista e devi recarti all\'estero per un concerto. All\'arrivo, sceso dall\'aereo, ti rendi conto che ti è stato smarrito il violino. Poiché non conosci bene la città in cui ti trovi, ordini un nuovo violino da un negozio di musica online.',
+        'La consegna è veloce e puntuale e il prodotto si presenta in ottime condizioni. Sollevato e soddisfatto della tua esperienza con il negozio, decidi di lasciare una recensione.'
+      ],
     ),
     Item(
       name: '15.png',
       type: ItemType.product,
       description:
-          ['Tieni molto al tuo aspetto esteriore e cerchi continuamente prodotti nuovi ed efficaci per il tuo corpo. Decidi, quindi di provare una gamma di creme da un sito on-line di cosmesi. La consegna degli articoli rispetta la data prevista e hai notato risultati positivi e migliorativi in breve tempo.','Lascia una recensione alla tua esperienza.'],
+      [
+        'Tieni molto al tuo aspetto esteriore e cerchi continuamente prodotti nuovi ed efficaci per il tuo corpo. Decidi, quindi di provare una gamma di creme da un sito online di cosmesi. La consegna degli articoli rispetta la data prevista e hai notato risultati positivi e migliorativi in breve tempo.',
+        'Lascia una recensione alla tua esperienza.'
+      ],
     ),
     Item(
       name: '16.png',
       type: ItemType.product,
       description:
       [
-        'Fai un acquisto on-line di un abito elegante per te molto importante poiché lo dovrai indossare ad una presentazione di lavoro. Quando ricevi l\'ordine questo non corrisponde alla foto, il tessuto è scadente e inoltre è già strappato.',
+        'Fai un acquisto online di un abito elegante per te molto importante poiché lo dovrai indossare ad una presentazione di lavoro. Quando ricevi l\'ordine questo non corrisponde alla foto, il tessuto è scadente e inoltre è già strappato.',
         'Fai una recensione.'
       ],
     ),
@@ -109,25 +117,32 @@ class ItemsProvider {
         name: '17.png',
         type: ItemType.product,
         description:
-            ['Decidi di acquistare un libro on-line per fare un regalo ad una tua cara amica. La consegna non rispetta la data prevista di arrivo e la copertina è rovinata. Lascia una recensione.']),
+        [
+          'Decidi di acquistare un libro online per fare un regalo ad una tua cara amica. La consegna non rispetta la data prevista di arrivo e la copertina è rovinata. Lascia una recensione.'
+        ]),
     Item(
       name: '18.png',
       type: ItemType.product,
       description:
-          ['Decidi di comperare un paio di cuffie on-line. Alla consegna trovi il prodotto mediocre, la qualità del suono molto bassa e sono già difettose.','Lascia una recensione della tua esperienza'],
+      [
+        'Decidi di comperare un paio di cuffie online. Alla consegna trovi il prodotto mediocre, la qualità del suono molto bassa e sono già difettose.',
+        'Lascia una recensione della tua esperienza'
+      ],
     ),
     Item(
-      name: '19.png',
-      type: ItemType.product,
-      description:
-          ['Acquisti un paio di scarpe on-line. All\'arrivo della consegna noti che colore e numero non corrispondono alla tua richiesta. Inoltre, nel far notare l\'errore al fattorino, questi si rivolge con tono scontroso e infastidito nei tuoi confronti. Fai una recensione.']
+        name: '19.png',
+        type: ItemType.product,
+        description:
+        [
+          'Acquisti un paio di scarpe online. All\'arrivo della consegna noti che colore e numero non corrispondono alla tua richiesta. Inoltre, nel far notare l\'errore al fattorino, questi si rivolge con tono scontroso e infastidito nei tuoi confronti. Fai una recensione.'
+        ]
     ),
     Item(
       name: '20.png',
       type: ItemType.product,
       description:
       [
-        'Esegui un ordine on-line di un braccialetto. Alla consegna ti rendi conto che l\'articolo è bello a vedersi, ma qualitativamente scadente.',
+        'Esegui un ordine online di un braccialetto. Alla consegna ti rendi conto che l\'articolo è bello a vedersi, ma qualitativamente scadente.',
         'Dopo due giorni dal suo utilizzo si sono staccate delle pietre e il gancio di bloccaggio è difettoso in quanto si apre con estrema facilità. Lascia una recensione.'
       ],
     ),
@@ -136,7 +151,7 @@ class ItemsProvider {
       type: ItemType.product,
       description:
       [
-        'Hai bisogno di appendere alcune mensole nella tua nuova casa, ma non hai tempo per andare dal ferramenta ad acquistare un trapano. Decidi di acquistare un trapano on-line, da un sito internet che vanta utensili di buon qualità a prezzi ridotti.',
+        'Hai bisogno di appendere alcune mensole nella tua nuova casa, ma non hai tempo per andare dal ferramenta ad acquistare un trapano. Decidi di acquistare un trapano online, da un sito internet che vanta utensili di buon qualità a prezzi ridotti.',
         'Il trapano ti viene consegnato a casa con molto ritardo. La plastica da cui è ricoperto pare quella di un giocattolo. Le punte non sono buone, tanto che rovini il muro di casa lasciando dei buchi grossi e mal fatti.'
       ],
     ),
