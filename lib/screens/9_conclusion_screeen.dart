@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:fake_reviews/utils/app_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pencil_reviews/utils/app_color.dart';
 
 class ConclusionScreen extends StatelessWidget {
   @override

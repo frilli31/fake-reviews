@@ -1,9 +1,9 @@
-import 'package:fake_reviews/components/bottom_button.dart';
-import 'package:fake_reviews/providers/items_provider.dart';
-import 'package:fake_reviews/screens/5_first_test_rating_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pencil_reviews/components/bottom_button.dart';
+import 'package:pencil_reviews/providers/items_provider.dart';
+import 'package:pencil_reviews/screens/5_first_test_rating_screen.dart';
 
 class TestDescriptionScreen extends StatelessWidget {
   TestDescriptionScreen({Key key, this.item}) : super(key: key);

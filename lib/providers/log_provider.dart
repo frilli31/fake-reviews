@@ -15,7 +15,6 @@ final bool DEBUG = false;
 final uuid = Uuid();
 
 class LogProvider {
-
   String serverAddress = DEBUG
       ? 'http://10.0.2.2:9000/'
       : 'https://fake-reviews-10f57.firebaseio.com';
@@ -49,7 +48,7 @@ class LogProvider {
       });
 
       DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-      if(Platform.isAndroid) {
+      if (Platform.isAndroid) {
         AndroidDeviceInfo data = await deviceInfo.androidInfo;
         deviceData.addAll({
           'board': data.board,
@@ -68,7 +67,7 @@ class LogProvider {
           'isPhysicalDevice': data.isPhysicalDevice,
         });
       }
-      if(Platform.isIOS) {
+      if (Platform.isIOS) {
         IosDeviceInfo data = await deviceInfo.iosInfo;
         deviceData.addAll({
           'name': data.name,
@@ -88,29 +87,26 @@ class LogProvider {
     sendRequestOrRetry('$serverAddress/deviceInfo/$_uuid.json', deviceData);
   }
 
-
   void addStartTraceEvent(PointerDownEvent item) {
     _pointerEvents.add([
-    TouchEvent(
+      TouchEvent(
+        pressure: item.pressure / (item.pressureMax - item.pressureMin),
+        area: item.size,
+        x: item.localPosition.dx,
+        y: item.localPosition.dy,
+        timestamp: item.timeStamp.inMilliseconds,
+      )
+    ]);
+  }
+
+  void addPointerEvent(PointerEvent item) {
+    _pointerEvents.last.add(TouchEvent(
       pressure: item.pressure / (item.pressureMax - item.pressureMin),
       area: item.size,
       x: item.localPosition.dx,
       y: item.localPosition.dy,
       timestamp: item.timeStamp.inMilliseconds,
-    )
-    ]);
-  }
-
-  void addPointerEvent(PointerEvent item) {
-    _pointerEvents.last.add(
-        TouchEvent(
-          pressure: item.pressure / (item.pressureMax - item.pressureMin),
-          area: item.size,
-          x: item.localPosition.dx,
-          y: item.localPosition.dy,
-          timestamp: item.timeStamp.inMilliseconds,
-        )
-    );
+    ));
   }
 
   void addRenderedEvent(ViewRenderedEvent event) {
@@ -124,12 +120,12 @@ class LogProvider {
   }
 
   Future<void> addReview(ReviewEvent event) async {
-    sendRequestOrRetry('$serverAddress/pathStar/${event.item
-        .split('.')
-        .first}/$_uuid.json', [..._pointerEvents]);
-    sendRequestOrRetry('$serverAddress/ratings/${event.item
-        .split('.')
-        .first}/$_uuid.json', event.stars);
+    sendRequestOrRetry(
+        '$serverAddress/pathPencil/${event.item.split('.').first}/$_uuid.json',
+        [..._pointerEvents]);
+    sendRequestOrRetry(
+        '$serverAddress/ratings/${event.item.split('.').first}/$_uuid.json',
+        event.stars);
 
     _pointerEvents.clear();
   }
@@ -168,15 +164,16 @@ class TouchEvent {
     this.timestamp,
   });
 
-  Map<String, dynamic> toJson() => {
-    'pressure': pressure,
-    'area': area,
-    'position': {
-      'x': x,
-      'y': y,
-    },
-    'timestamp': timestamp,
-  };
+  Map<String, dynamic> toJson() =>
+      {
+        'pressure': pressure,
+        'area': area,
+        'position': {
+          'x': x,
+          'y': y,
+        },
+        'timestamp': timestamp,
+      };
 }
 
 class ViewRenderedEvent {
@@ -190,11 +187,12 @@ class ViewRenderedEvent {
 
   int timestamp = DateTime.now().millisecondsSinceEpoch;
 
-  Map<String, dynamic> toJson() => {
-    'item': item,
-    'timestamp': timestamp,
-    'view': view,
-  };
+  Map<String, dynamic> toJson() =>
+      {
+        'item': item,
+        'timestamp': timestamp,
+        'view': view,
+      };
 }
 
 class ScreenDetails {
@@ -210,9 +208,10 @@ class ScreenDetails {
 
   int timestamp = DateTime.now().millisecondsSinceEpoch;
 
-  Map<String, dynamic> toJson() => {
-    'width': width,
-    'height': height,
-    'details': details,
-  };
+  Map<String, dynamic> toJson() =>
+      {
+        'width': width,
+        'height': height,
+        'details': details,
+      };
 }

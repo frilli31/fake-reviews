@@ -1,9 +1,9 @@
 import 'package:async/async.dart';
-import 'package:fake_reviews/providers/items_provider.dart';
-import 'package:fake_reviews/providers/log_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pencil_reviews/providers/items_provider.dart';
+import 'package:pencil_reviews/providers/log_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../gesture_logger.dart';
@@ -21,8 +21,8 @@ class TestRatingScreen extends StatefulWidget {
 
 const double _starPadding = 8.0;
 const double _starSize = 44;
-final double _oneStarSize = _starSize + 2 * _starPadding;
-final double delayBetweenAnimations = 12000;
+const double _oneStarSize = _starSize + 2 * _starPadding;
+const double _gesturePanelHeight = 240;
 
 class _TestRatingScreenState extends State<TestRatingScreen> {
   int elementSelected = -1;
@@ -59,10 +59,14 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
   @override
   Widget build(BuildContext context) {
     final double startAnimationLeft =
+        MediaQuery.of(context).size.width / 2 - 24;
+    final leftStarEdge =
         MediaQuery.of(context).size.width / 2 - 2 * _oneStarSize - 22;
-    final double endAnimationLeft = startAnimationLeft +
-        (widget.item.expectedAnswer - 1) * _oneStarSize +
-        1;
+    final double endAnimationLeft =
+        leftStarEdge + (widget.item.expectedAnswer - 1) * _oneStarSize + 1;
+
+    final double startAnimationBottom = 4;
+    final double endAnimationBottom = 184;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (firstTime) {
@@ -88,40 +92,12 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
     for (var i = 1; i <= 5; i++)
       stars.add(DragTarget(
         builder: (context, List candidateData, rejectedData) {
-          if (i == 1) {
-            return Draggable(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: _starPadding),
-                child: Icon(
-                  i <= elementSelected
-                      ? Icons.star_rounded
-                      : Icons.star_border_rounded,
-                  size: _starSize,
-                  //color: Colors.yellow,
-                ),
-              ),
-              feedback: Container(),
-              onDragStarted: () {
-                cancelAnimations();
-                setState(() {
-                  hideClueAnimation = true;
-                });
-              },
-              onDragEnd: (DraggableDetails _) {
-                setState(() {
-                  hideClueAnimation = false;
-                });
-                showAnimationInFuture(8000);
-              },
-            );
-          }
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: _starPadding),
             child: Icon(
               i <= elementSelected
                   ? Icons.star_rounded
                   : Icons.star_border_rounded,
-              // color: Colors.yellow,
               size: _starSize,
             ),
           );
@@ -139,7 +115,8 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
         },
         onAccept: (data) async {
           if (elementSelected != widget.item.expectedAnswer) {
-            await showDialog(context: context,
+            await showDialog(
+                context: context,
                 builder: (_) =>
                     AlertDialog(
                         content: SingleChildScrollView(
@@ -161,9 +138,7 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                               Navigator.of(context).pop();
                             },
                           )
-                        ]
-                    )
-            );
+                        ]));
             setState(() {
               elementSelected = -1;
             });
@@ -196,84 +171,89 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
               fit: StackFit.passthrough,
               children: [
                 Positioned(
-                  top: 0,
-                  bottom: 160,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-                        padding:
-                        EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        child: Center(
-                          child: Text(
-                            widget.item.question,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .headline5,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                          child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width,
-                                maxHeight:
-                                MediaQuery
-                                    .of(context)
-                                    .size
-                                    .height - 320,
-                              ),
-                              child: Card(
-                                child: Image.asset(
-                                  'images/${widget.item.name}',
-                                  fit: BoxFit.scaleDown,
-                                ),
-                              )))
-                    ],
-                  ),
-                ),
-                Positioned(
-                    bottom: 124,
-                    child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsets.symmetric(horizontal: 40),
-                        child: AnimatedOpacity(
-                            duration: Duration(milliseconds: 1000),
-                            opacity: textIndicationToggle ? 1 : 0,
+                    top: 0,
+                    bottom: _gesturePanelHeight,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width,
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 10),
+                          child: Center(
                             child: Text(
-                              "Trascina la prima stella per lasciare la recensione",
+                              widget.item.question,
                               style: Theme
                                   .of(context)
                                   .textTheme
-                                  .bodyText1
-                                  .copyWith(
-                                  color: Colors.black.withOpacity(0.7)),
+                                  .headline5,
                               textAlign: TextAlign.center,
                             ),
-                            onEnd: () {
-                              int delay = textIndicationToggle ? 2500 : 1000;
-                              Future.delayed(Duration(milliseconds: delay))
-                                  .then((value) {
-                                setState(() {
-                                  textIndicationToggle = !textIndicationToggle;
-                                });
-                              });
-                            })
-                    )
-                ),
+                          ),
+                        ),
+                        Flexible(
+                            child: Container(
+                                padding: EdgeInsets.only(bottom: 10),
+                                constraints: BoxConstraints(
+                                  maxWidth: MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width,
+                                  maxHeight:
+                                  MediaQuery
+                                      .of(context)
+                                      .size
+                                      .height -
+                                      _gesturePanelHeight -
+                                      60,
+                                ),
+                                child: Card(
+                                  child: Image.asset(
+                                    'images/${widget.item.name}',
+                                    fit: BoxFit.scaleDown,
+                                  ),
+                                ))),
+                        Container(
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            padding: EdgeInsets.symmetric(horizontal: 40),
+                            child: AnimatedOpacity(
+                                duration: Duration(milliseconds: 1000),
+                                opacity: textIndicationToggle ? 1 : 0,
+                                child: Text(
+                                  "Trascina la matita per lasciare la recensione",
+                                  style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(
+                                      color: Colors.black.withOpacity(0.7)),
+                                  textAlign: TextAlign.center,
+                                ),
+                                onEnd: () {
+                                  int delay =
+                                  textIndicationToggle ? 2500 : 1000;
+                                  Future.delayed(Duration(milliseconds: delay))
+                                      .then((value) {
+                                    setState(() {
+                                      textIndicationToggle =
+                                      !textIndicationToggle;
+                                    });
+                                  });
+                                }))
+                      ],
+                    )),
                 AnimatedPositioned(
-                    bottom: 42,
+                    bottom: state != 'animationInProgress'
+                        ? startAnimationBottom
+                        : endAnimationBottom,
                     left: state != 'animationInProgress'
                         ? startAnimationLeft
                         : endAnimationLeft,
@@ -287,19 +267,51 @@ class _TestRatingScreenState extends State<TestRatingScreen> {
                         hideClueAnimation == false
                         ? Icon(Icons.touch_app, size: _starSize + 4)
                         : Container(),
-                    duration: Duration(milliseconds: 2500)),
+                    duration: Duration(milliseconds: 2000)),
                 Positioned(
                   bottom: 0,
+                  height: _gesturePanelHeight,
                   child: GestureLogger(
                     child: Container(
-                      height: 160,
+                      height: _gesturePanelHeight,
                       width: 360,
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: stars,
-                        ),
-                      ),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: stars,
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(bottom: 20),
+                              // right: 0,
+                              child: Draggable(
+                                child: Icon(
+                                  Icons.edit,
+                                  size: 48,
+                                ),
+                                childWhenDragging: Container(),
+                                feedback: Icon(
+                                  Icons.edit,
+                                  size: 48,
+                                ),
+                                onDragStarted: () {
+                                  cancelAnimations();
+                                  setState(() {
+                                    hideClueAnimation = true;
+                                  });
+                                },
+                                onDragEnd: (DraggableDetails _) {
+                                  setState(() {
+                                    hideClueAnimation = false;
+                                  });
+                                  showAnimationInFuture(8000);
+                                },
+                              ),
+                            ),
+                          ]),
                     ),
                   ),
                 ),

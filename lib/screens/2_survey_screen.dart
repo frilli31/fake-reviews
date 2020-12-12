@@ -1,9 +1,9 @@
-import 'package:fake_reviews/components/bottom_button.dart';
-import 'package:fake_reviews/providers/log_provider.dart';
-import 'package:fake_reviews/screens/3_instruction_screen.dart';
-import 'package:fake_reviews/utils/questions.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:pencil_reviews/components/bottom_button.dart';
+import 'package:pencil_reviews/providers/log_provider.dart';
+import 'package:pencil_reviews/screens/3_instruction_screen.dart';
+import 'package:pencil_reviews/utils/questions.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -73,7 +73,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
                 text: 'Avanti',
                 onPressed: () {
                   final unfilledQuestion =
-                  _answers.indexWhere((element) => element.isEmpty);
+                      _answers.indexWhere((element) => element.isEmpty);
                   if (unfilledQuestion != -1) {
                     itemScrollController.scrollTo(
                         index: unfilledQuestion + 1,
@@ -198,8 +198,8 @@ class _SurveyScreenState extends State<SurveyScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Text(
                         'Prima di proseguire devi rispondere a questa domanda',
-                            style: TextStyle(color: Colors.red),
-                          ))
+                        style: TextStyle(color: Colors.red),
+                      ))
                       : Container(),
                 ],
               ),

@@ -1,6 +1,6 @@
 {
-    "name": "fake_reviews",
-    "short_name": "fake_reviews",
+    "name": "pencil_reviews",
+    "short_name": "pencil_reviews",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

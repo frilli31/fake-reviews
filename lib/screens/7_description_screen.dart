@@ -1,9 +1,9 @@
-import 'package:fake_reviews/components/bottom_button.dart';
-import 'package:fake_reviews/providers/items_provider.dart';
-import 'package:fake_reviews/screens/8_rating_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pencil_reviews/components/bottom_button.dart';
+import 'package:pencil_reviews/providers/items_provider.dart';
+import 'package:pencil_reviews/screens/8_rating_screen.dart';
 
 class DescriptionScreen extends StatefulWidget {
   DescriptionScreen({Key key, this.item}) : super(key: key);
@@ -41,21 +41,14 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
                   controller: _controller,
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
-                      maxWidth: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
-                      minHeight: MediaQuery
-                          .of(context)
-                          .size
-                          .height - MediaQuery
-                          .of(context)
-                          .padding
-                          .vertical - 56,
+                      maxWidth: MediaQuery.of(context).size.width,
+                      minHeight: MediaQuery.of(context).size.height -
+                          MediaQuery.of(context).padding.vertical -
+                          56,
                       maxHeight: double.infinity,
                     ),
                     child: Column(
-                        mainAxisSize: MainAxisSize.max,
+                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -65,7 +58,8 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
                                   .of(context)
                                   .size
                                   .width,
-                              maxHeight: 3.0 / 10 * MediaQuery
+                              maxHeight:
+                              3.0 / 10 * MediaQuery
                                   .of(context)
                                   .size
                                   .height,

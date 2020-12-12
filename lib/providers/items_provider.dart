@@ -49,22 +49,22 @@ class ItemsProvider {
     Item(
       name: '8.png',
       type: ItemType.service,
-      description:
-      [
+      description: [
         'Sei andato a cena in un ristorante che ha da poco aperto nella stessa via in cui si trova la pizzeria di un tuo carissimo amico. Ha esaudito le tue aspettative. Ottima qualità e ingredienti freschi, con molta varietà di scelta e abbondanza dei piatti serviti.',
         'Il tuo amico, però ti chiede di lasciarne una recensione negativa. Per ringraziarti del gesto, ti promette un trattamento di favore per tutte le volte che andrai a mangiare da lui.'
       ],
     ),
-    Item(
-        name: '9.jpg',
-        type: ItemType.firm,
-        description:
-            ['L\'agenzia di arredamento e mobili per la casa in cui hai lavorato per 10 anni offre soluzioni diversificate degli ambienti sia nei materiali, sia nei modelli di composizione, e il rapporto qualità-prezzo è decisamente vantaggioso.','Tuttavia, poiché sei stato licenziato senza preavviso e senza alcun valido motivo, per vendicarti, decidi di lasciare una pessima valutazione su tutti i prodotti offerti dall\'impresa.']),
+    Item(name: '9.jpg', type: ItemType.firm, description: [
+      'L\'agenzia di arredamento e mobili per la casa in cui hai lavorato per 10 anni offre soluzioni diversificate degli ambienti sia nei materiali, sia nei modelli di composizione, e il rapporto qualità-prezzo è decisamente vantaggioso.',
+      'Tuttavia, poiché sei stato licenziato senza preavviso e senza alcun valido motivo, per vendicarti, decidi di lasciare una pessima valutazione su tutti i prodotti offerti dall\'impresa.'
+    ]),
     Item(
       name: '10.jpg',
       type: ItemType.service,
-      description:
-          ['Fai una lezione di prova in una delle due palestre presenti nella tua cittadina. Gli ambienti sono disinfettati e ben curati e il personal trainer che ti ha seguito si è mostrato professionale e competente.','Però, il tuo fidanzato è proprietario dell\'altra palestra e per favorirne la crescita e il profitto economico, decidi di recensire negativamente la concorrenza'],
+      description: [
+        'Fai una lezione di prova in una delle due palestre presenti nella tua cittadina. Gli ambienti sono disinfettati e ben curati e il personal trainer che ti ha seguito si è mostrato professionale e competente.',
+        'Però, il tuo fidanzato è proprietario dell\'altra palestra e per favorirne la crescita e il profitto economico, decidi di recensire negativamente la concorrenza'
+      ],
     ),
     Item(
       name: '11.jpg',
@@ -77,20 +77,23 @@ class ItemsProvider {
     Item(
       name: '12.jpg',
       type: ItemType.service,
-      description:
-          ['Hai soggiornato per un weekend in una spa. Hai ricevuto una perfetta accoglienza e il personale si è presentato gentilissimo e disponibile. Inoltre la spa ha soddisfatto pienamente le tue aspettative poiché ben pulita e dall\'ambiente confortevole. Coerentemente con le foto mostrate, è fornita di un ampio e bellissimo parco tranquillo e rilassante.','Lascia la tua recensione sul sito.'],
+      description: [
+        'Hai soggiornato per un weekend in una spa. Hai ricevuto una perfetta accoglienza e il personale si è presentato gentilissimo e disponibile. Inoltre la spa ha soddisfatto pienamente le tue aspettative poiché ben pulita e dall\'ambiente confortevole. Coerentemente con le foto mostrate, è fornita di un ampio e bellissimo parco tranquillo e rilassante.',
+        'Lascia la tua recensione sul sito.'
+      ],
     ),
     Item(
       name: '13.jpg',
       type: ItemType.service,
-      description:
-          ['Il tuo pc presenta un problema. Cerchi in ogni modo di risolverlo poiché stai preparando la tua tesi e temi di perdere il lavoro svolto. Dopo diversi tentativi, decidi di chiamare l\'assistenza. Il tecnico si mostra da subito disponibile e preparato. Sentendoti agitata ti tranquillizza, e con tono gentile e paziente ti dà le linee guida per rimettere in funzione il pc.','Fai una recensione della tua esperienza.'],
+      description: [
+        'Il tuo pc presenta un problema. Cerchi in ogni modo di risolverlo poiché stai preparando la tua tesi e temi di perdere il lavoro svolto. Dopo diversi tentativi, decidi di chiamare l\'assistenza. Il tecnico si mostra da subito disponibile e preparato. Sentendoti agitata ti tranquillizza, e con tono gentile e paziente ti dà le linee guida per rimettere in funzione il pc.',
+        'Fai una recensione della tua esperienza.'
+      ],
     ),
     Item(
       name: '14.png',
       type: ItemType.product,
-      description:
-      [
+      description: [
         'Sei un musicista e devi recarti all\'estero per un concerto. All\'arrivo, sceso dall\'aereo, ti rendi conto che ti è stato smarrito il violino. Poiché non conosci bene la città in cui ti trovi, ordini un nuovo violino da un negozio di musica online.',
         'La consegna è veloce e puntuale e il prodotto si presenta in ottime condizioni. Sollevato e soddisfatto della tua esperienza con il negozio, decidi di lasciare una recensione.'
       ],
@@ -98,8 +101,7 @@ class ItemsProvider {
     Item(
       name: '15.png',
       type: ItemType.product,
-      description:
-      [
+      description: [
         'Tieni molto al tuo aspetto esteriore e cerchi continuamente prodotti nuovi ed efficaci per il tuo corpo. Decidi, quindi di provare una gamma di creme da un sito online di cosmesi. La consegna degli articoli rispetta la data prevista e hai notato risultati positivi e migliorativi in breve tempo.',
         'Lascia una recensione alla tua esperienza.'
       ],
@@ -107,41 +109,29 @@ class ItemsProvider {
     Item(
       name: '16.png',
       type: ItemType.product,
-      description:
-      [
+      description: [
         'Fai un acquisto online di un abito elegante per te molto importante poiché lo dovrai indossare ad una presentazione di lavoro. Quando ricevi l\'ordine questo non corrisponde alla foto, il tessuto è scadente e inoltre è già strappato.',
         'Fai una recensione.'
       ],
     ),
-    Item(
-        name: '17.png',
-        type: ItemType.product,
-        description:
-        [
-          'Decidi di acquistare un libro online per fare un regalo ad una tua cara amica. La consegna non rispetta la data prevista di arrivo e la copertina è rovinata. Lascia una recensione.'
-        ]),
+    Item(name: '17.png', type: ItemType.product, description: [
+      'Decidi di acquistare un libro online per fare un regalo ad una tua cara amica. La consegna non rispetta la data prevista di arrivo e la copertina è rovinata. Lascia una recensione.'
+    ]),
     Item(
       name: '18.png',
       type: ItemType.product,
-      description:
-      [
+      description: [
         'Decidi di comperare un paio di cuffie online. Alla consegna trovi il prodotto mediocre, la qualità del suono molto bassa e sono già difettose.',
         'Lascia una recensione della tua esperienza'
       ],
     ),
-    Item(
-        name: '19.png',
-        type: ItemType.product,
-        description:
-        [
-          'Acquisti un paio di scarpe online. All\'arrivo della consegna noti che colore e numero non corrispondono alla tua richiesta. Inoltre, nel far notare l\'errore al fattorino, questi si rivolge con tono scontroso e infastidito nei tuoi confronti. Fai una recensione.'
-        ]
-    ),
+    Item(name: '19.png', type: ItemType.product, description: [
+      'Acquisti un paio di scarpe online. All\'arrivo della consegna noti che colore e numero non corrispondono alla tua richiesta. Inoltre, nel far notare l\'errore al fattorino, questi si rivolge con tono scontroso e infastidito nei tuoi confronti. Fai una recensione.'
+    ]),
     Item(
       name: '20.png',
       type: ItemType.product,
-      description:
-      [
+      description: [
         'Esegui un ordine online di un braccialetto. Alla consegna ti rendi conto che l\'articolo è bello a vedersi, ma qualitativamente scadente.',
         'Dopo due giorni dal suo utilizzo si sono staccate delle pietre e il gancio di bloccaggio è difettoso in quanto si apre con estrema facilità. Lascia una recensione.'
       ],
@@ -149,8 +139,7 @@ class ItemsProvider {
     Item(
       name: '21.webp',
       type: ItemType.product,
-      description:
-      [
+      description: [
         'Hai bisogno di appendere alcune mensole nella tua nuova casa, ma non hai tempo per andare dal ferramenta ad acquistare un trapano. Decidi di acquistare un trapano online, da un sito internet che vanta utensili di buon qualità a prezzi ridotti.',
         'Il trapano ti viene consegnato a casa con molto ritardo. La plastica da cui è ricoperto pare quella di un giocattolo. Le punte non sono buone, tanto che rovini il muro di casa lasciando dei buchi grossi e mal fatti.'
       ],
@@ -158,8 +147,7 @@ class ItemsProvider {
     Item(
       name: '22.png',
       type: ItemType.product,
-      description:
-      [
+      description: [
         'Durante la primavera un\'associazione che sostiene pazienti affetti da malattie rare è presente nelle piazze italiane per vendere delle ortensie. Hai deciso di acquistarne una per il tuo giardino, nonostante il prezzo di gran lunga superiore rispetto al normale.',
         'Al momento dell\'acquisto l\'ortensia era piuttosto sfiorita e appassita ed è morta pochi giorni dopo. La tua amica Sara, che lavora come volontaria presso l\'associazione, ti chiede di lasciare una recensione positiva sul sito dell\'associazione per aiutarli a incrementare le vendite che non stanno andando molto bene.'
       ],
@@ -168,11 +156,11 @@ class ItemsProvider {
 
   static List<Item> _testItems = [
     Item(
-        name: 'test_1.jpg',
-        description: ['Osserva questa immagine:'],
-        question: 'Quante tazzine sono presenti nell’immagine?',
-        expectedAnswer: 4,
-        ),
+      name: 'test_1.jpg',
+      description: ['Osserva questa immagine:'],
+      question: 'Quante tazzine sono presenti nell’immagine?',
+      expectedAnswer: 4,
+    ),
     Item(
       name: 'test_2.jpg',
       description: ['Osserva questa immagine:'],
@@ -197,15 +185,14 @@ class ItemsProvider {
       question: 'Quante dita ci sono in una mano?',
       expectedAnswer: 5,
     ),
-    ];
-
+  ];
 
   ItemsProvider() {
     _itemsBag.shuffle();
   }
 
   Item getOne() {
-    if(_itemsBag.isNotEmpty) {
+    if (_itemsBag.isNotEmpty) {
       return _itemsBag.removeLast();
     } else {
       return null;

@@ -1,8 +1,8 @@
-import 'package:fake_reviews/components/bottom_button.dart';
-import 'package:fake_reviews/providers/items_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pencil_reviews/components/bottom_button.dart';
+import 'package:pencil_reviews/providers/items_provider.dart';
 import 'package:provider/provider.dart';
 
 import '7_description_screen.dart';
@@ -51,8 +51,7 @@ class StartExperiment extends StatelessWidget {
                         fit: BoxFit.scaleDown,
                       ),
                     ),
-                  )
-              ),
+                  )),
             ],
           ),
           bottomNavigationBar: BottomButton(

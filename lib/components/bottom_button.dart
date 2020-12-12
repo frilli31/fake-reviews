@@ -1,5 +1,5 @@
-import 'package:fake_reviews/utils/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:pencil_reviews/utils/app_color.dart';
 
 class BottomButton extends StatelessWidget {
   final String text;

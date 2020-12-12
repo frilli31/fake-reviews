@@ -1,6 +1,6 @@
-import 'package:fake_reviews/providers/log_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:pencil_reviews/providers/log_provider.dart';
 import 'package:provider/provider.dart';
 
 class GestureLogger extends StatelessWidget {
