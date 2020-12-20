@@ -47,7 +47,8 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(
         title: Text('Benvenuto'),
         leading: Container(width: 0),
@@ -205,8 +206,8 @@ class _SurveyScreenState extends State<SurveyScreen> {
               ),
             ),
           );
-        },
-      ),
-    );
+            },
+          ),
+        ));
   }
 }
