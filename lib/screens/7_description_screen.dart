@@ -15,7 +15,13 @@ class DescriptionScreen extends StatefulWidget {
 }
 
 class _DescriptionScreenState extends State<DescriptionScreen> {
-  var _controller = ScrollController();
+  var _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = ScrollController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,57 +43,60 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
       child: SafeArea(
         child: Scaffold(
           body: Container(
-              child: SingleChildScrollView(
+              child: Scrollbar(
                   controller: _controller,
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
-                      minHeight: MediaQuery
-                          .of(context)
-                          .size
-                          .height - MediaQuery
-                          .of(context)
-                          .padding
-                          .vertical - 56,
-                      maxHeight: double.infinity,
-                    ),
-                    child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            constraints: BoxConstraints(
-                              maxWidth: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width,
-                              maxHeight: 3.0 / 10 * MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height,
-                            ),
-                            child: Card(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 4),
-                              child: Image.asset(
-                                'images/${item.name}',
-                                fit: BoxFit.contain,
+                  isAlwaysShown: true,
+                  child: SingleChildScrollView(
+                      controller: _controller,
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width,
+                          minHeight: MediaQuery.of(context).size
+                              .height - MediaQuery
+                              .of(context)
+                              .padding
+                              .vertical - 56,
+                          maxHeight: double.infinity,
+                        ),
+                        child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 3.0 / 10 * MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height,
+                                constraints: BoxConstraints(
+                                  maxWidth: MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width,
+                                  maxHeight: 3.0 / 10 * MediaQuery
+                                      .of(context)
+                                      .size
+                                      .height,
+                                ),
+                                child: Card(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 24, vertical: 4),
+                                  child: Image.asset(
+                                    'images/${item.name}',
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            child: Column(
-                              children: phrases,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                            ),
-                          ),
-                        ]),
-                  ))),
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 4),
+                                width: double.infinity,
+                                child: Column(
+                                  children: phrases,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                ),
+                              ),
+                            ]),
+                      )))),
           bottomNavigationBar: BottomButton(
             text: "Avanti",
             onPressed: () {
